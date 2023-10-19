@@ -42,3 +42,6 @@ yarn-error.log*
 *.tsbuildinfo
 
 .gitconfig
+
+# editor conf
+.vscode
