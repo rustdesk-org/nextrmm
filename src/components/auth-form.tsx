@@ -79,7 +79,7 @@ export function AuthForm({ className, ...props }: AuthFormProps) {
           variant="outline"
           type="button"
           disabled={isLoading}
-          onClick={() => void signIn("google", { callbackUrl: "/" })}
+          onClick={() => signIn("google", { callbackUrl: "/" })}
         >
           {isLoading ? (
             <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
@@ -92,7 +92,7 @@ export function AuthForm({ className, ...props }: AuthFormProps) {
           variant="outline"
           type="button"
           disabled={isLoading}
-          onClick={() => void signIn("github", { callbackUrl: "/" })}
+          onClick={() => signIn("github", { callbackUrl: "/" })}
         >
           {isLoading ? (
             <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
