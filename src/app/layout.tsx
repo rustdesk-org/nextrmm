@@ -6,6 +6,12 @@ import { headers } from "next/headers";
 import { TRPCReactProvider } from "~/trpc/react";
 import { siteConfig } from "~/config/site"
 
+import { controlboardConfig } from "~/config/control-board"
+import { HeadNav,SideNav } from "~/components/nav"
+import { DashboardNav } from "~/components/nav"
+import { SiteFooter } from "~/components/site-footer"
+// import { UserAccountNav } from "~/components/user-account-nav"
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -48,7 +54,24 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${inter.variable}`}>
-        <TRPCReactProvider headers={headers()}>{children}</TRPCReactProvider>
+        <TRPCReactProvider headers={headers()}>
+            <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr]">
+              <aside className="hidden w-[200px] flex-col md:flex">
+                <SideNav items={controlboardConfig.sidebarNav} />
+              </aside>
+              <div className="flex min-h-screen flex-col space-y-6">
+                <header className="sticky top-0 z-40 border-b bg-background">
+                  <div className="container flex h-16 items-center justify-between py-4">
+                    <HeadNav />
+                  </div>
+                </header>
+                <main className="flex w-full flex-1 flex-col overflow-hidden">
+                  {children}
+                </main>
+              </div>
+            </div>
+            <SiteFooter className="border-t" />
+        </TRPCReactProvider>
       </body>
     </html>
   );

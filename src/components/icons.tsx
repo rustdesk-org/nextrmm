@@ -1,9 +1,58 @@
-import { Loader2, type LucideProps, type LucideIcon } from "lucide-react";
+import {
+  AlertTriangle,
+  ArrowRight,
+  Check,
+  ChevronLeft,
+  ChevronRight,
+  Command,
+  CreditCard,
+  File,
+  FileText,
+  HelpCircle,
+  Image,
+  Laptop,
+  Monitor,
+  Loader2,
+  LucideProps,
+  Moon,
+  MoreVertical,
+  Pizza,
+  Plus,
+  Settings,
+  SunMedium,
+  Trash,
+  Twitter,
+  User,
+  X,
+  HardDriveDownload,
+  BookText,
+  GaugeCircle
+} from "lucide-react"
 
-export type Icon = LucideIcon;
+export type Icon = LucideProps
 
-export const Icons = {
+export const Icons:any = {
+  logo: Command,
+  close: X,
   spinner: Loader2,
+  chevronLeft: ChevronLeft,
+  chevronRight: ChevronRight,
+  trash: Trash,
+  post: FileText,
+  page: File,
+  media: Image,
+  settings: Settings,
+  billing: CreditCard,
+  ellipsis: MoreVertical,
+  add: Plus,
+  warning: AlertTriangle,
+  user: User,
+  arrowRight: ArrowRight,
+  help: HelpCircle,
+  pizza: Pizza,
+  sun: SunMedium,
+  moon: Moon,
+  laptop: Laptop,
   gitHub: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"
@@ -29,4 +78,10 @@ export const Icons = {
       />
     </svg>
   ),
+  twitter: Twitter,
+  check: Check,
+  agents: HardDriveDownload,
+  document: BookText,
+  dashboard: GaugeCircle,
+  machines: Monitor,
 };
