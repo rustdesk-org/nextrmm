@@ -8,6 +8,7 @@ import { HeadNavItem,SideNavItem } from "~/types"
 import { cn } from "~/lib/utils"
 import { Icons } from "~/components/icons"
 import { siteConfig } from "~/config/site"
+import { Input } from "~/components/ui/input"
 
 import {
   Accordion,
@@ -29,7 +30,11 @@ export function HeadNav({ children }: HeadNavProps) {
   const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false)
 
   return (
-    <div className="flex gap-6 md:gap-10">
+    <div className="flex h-12 items-center py-4 gap-6 md:gap-10">
+      <Input
+        className="max-w-sm"
+        placeholder="Search"
+      />
       <button
         className="flex items-center space-x-2 md:hidden"
         onClick={() => setShowMobileMenu(!showMobileMenu)}
