@@ -55,7 +55,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`font-sans ${inter.variable}`}>
         <TRPCReactProvider headers={headers()}>
-            <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr]">
+            <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr] max-w-none">
               <aside className="hidden w-[200px] flex-col md:flex">
                 <SideNav items={controlboardConfig.sidebarNav} />
               </aside>
