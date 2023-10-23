@@ -16,6 +16,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "~/components/ui/accordion"
+import { ModeToggle } from "~/components/mode-toggle"
 
 interface HeadNavProps {
   children?: React.ReactNode
@@ -32,9 +33,12 @@ export function HeadNav({ children }: HeadNavProps) {
   return (
     <div className="flex h-12 items-center py-4 gap-6 md:gap-10">
       <Input
-        className="max-w-sm"
+        className="w-4/12"
         placeholder="Search"
       />
+      <div className="flex flex-row-reverse w-8/12">
+        <ModeToggle/>
+      </div>
       <button
         className="flex items-center space-x-2 md:hidden"
         onClick={() => setShowMobileMenu(!showMobileMenu)}

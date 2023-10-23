@@ -11,6 +11,7 @@ import { HeadNav,SideNav } from "~/components/nav"
 import { DashboardNav } from "~/components/nav"
 import { SiteFooter } from "~/components/site-footer"
 // import { UserAccountNav } from "~/components/user-account-nav"
+import { ThemeProvider } from "~/components/theme-provider"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -55,6 +56,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`font-sans ${inter.variable}`}>
         <TRPCReactProvider headers={headers()}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr] max-w-none">
               <aside className="hidden w-[200px] flex-col md:flex">
                 <SideNav items={controlboardConfig.sidebarNav} />
@@ -69,6 +71,7 @@ export default function RootLayout({
               </div>
             </div>
             <SiteFooter className="border-t" />
+            </ThemeProvider>
         </TRPCReactProvider>
       </body>
     </html>
