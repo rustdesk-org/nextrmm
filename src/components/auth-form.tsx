@@ -9,6 +9,7 @@ import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { useSearchParams } from "next/navigation";
+import { authDataSchema } from "~/lib/validation/auth";
 
 interface AuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -21,8 +22,16 @@ export function AuthForm({ className, ...props }: AuthFormProps) {
     event.preventDefault();
     setIsLoading(true);
 
+    const isEmailValid = authDataSchema.safeParse({ email });
+
+    if (!isEmailValid.success) {
+      console.info("Invalid Email.", isEmailValid.error);
+      setIsLoading(false);
+      return;
+    }
+
     const result = await signIn("email", {
-      email: email,
+      email: isEmailValid.data.email,
       redirect: false,
       callbackUrl: searchParams.get("from") || "/",
     });

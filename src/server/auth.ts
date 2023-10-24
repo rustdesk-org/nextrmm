@@ -13,6 +13,7 @@ import { env } from "~/env.mjs";
 import { db } from "~/server/db";
 import { SignInTemplate } from "~/components/email-template/sign-in";
 import { SignUpTemplate } from "~/components/email-template/sign-up";
+import { authDataSchema } from "~/lib/validation/auth";
 
 const resend = new Resend("re_T3T2Nw76_LrnEcTmQxUC3oXfdAJ92WQmM");
 
@@ -74,9 +75,16 @@ export const authOptions: NextAuthOptions = {
       sendVerificationRequest: async ({ identifier, url, provider }) => {
         try {
           const { host } = new URL(url);
+
+          const isEmailValid = authDataSchema.safeParse({ email: identifier });
+
+          if (!isEmailValid.success) {
+            throw new Error("Invalid Email.");
+          }
+
           const user = await db.user.findUnique({
             where: {
-              email: identifier,
+              email: isEmailValid.data.email,
             },
             select: {
               emailVerified: true,
@@ -93,7 +101,7 @@ export const authOptions: NextAuthOptions = {
               : SignUpTemplate({ host, url }),
           });
         } catch (error) {
-          throw new Error(`Email could not be sent. ${error}`);
+          throw new Error(`Email could not be sent.`);
         }
       },
     }),
