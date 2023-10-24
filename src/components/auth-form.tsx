@@ -2,6 +2,8 @@
 
 import * as React from "react";
 import { signIn } from "next-auth/react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { cn } from "~/lib/utils";
 import { Icons } from "~/components/icons";
@@ -11,30 +13,32 @@ import { Label } from "~/components/ui/label";
 import { useSearchParams } from "next/navigation";
 import { authDataSchema } from "~/lib/validation/auth";
 import { AuthFormType } from "~/types/index.d";
+import { z } from "zod";
 
 interface AuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
   authFormType: AuthFormType;
 }
 
+type AuthFormData = z.infer<typeof authDataSchema>;
+
 export function AuthForm({ className, authFormType, ...props }: AuthFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [email, setEmail] = React.useState<string>("");
   const searchParams = useSearchParams();
 
-  async function onSubmit(event: React.SyntheticEvent) {
-    event.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<AuthFormData>({
+    resolver: zodResolver(authDataSchema),
+  });
+
+  async function onSubmit(data: AuthFormData) {
     setIsLoading(true);
 
-    const isEmailValid = authDataSchema.safeParse({ email });
-
-    if (!isEmailValid.success) {
-      console.info("Invalid Email.", isEmailValid.error);
-      setIsLoading(false);
-      return;
-    }
-
     const result = await signIn("email", {
-      email: isEmailValid.data.email,
+      email: data.email,
       redirect: false,
       callbackUrl: searchParams.get("from") || "/",
     });
@@ -47,13 +51,11 @@ export function AuthForm({ className, authFormType, ...props }: AuthFormProps) {
     }
 
     console.info("Please check your email.");
-
-    setEmail("");
   }
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid gap-4">
           <div className="grid gap-2">
             <Label className="sr-only" htmlFor="email">
@@ -63,13 +65,17 @@ export function AuthForm({ className, authFormType, ...props }: AuthFormProps) {
               id="email"
               placeholder="name@example.com"
               type="email"
-              value={email}
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
               disabled={isLoading}
-              onChange={(e) => setEmail(e.target.value)}
+              {...register("email")}
             />
+            {errors?.email && (
+              <p className="px-1 text-xs text-red-600">
+                {errors.email.message}
+              </p>
+            )}
           </div>
           <Button disabled={isLoading}>
             {isLoading && (
