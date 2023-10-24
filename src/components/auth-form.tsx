@@ -2,28 +2,41 @@
 
 import * as React from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
 
 import { cn } from "~/lib/utils";
 import { Icons } from "~/components/icons";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
+import { useSearchParams } from "next/navigation";
 
 interface AuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function AuthForm({ className, ...props }: AuthFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const router = useRouter();
+  const [email, setEmail] = React.useState<string>("");
+  const searchParams = useSearchParams();
 
-  function onSubmit(event: React.SyntheticEvent) {
+  async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
     setIsLoading(true);
 
-    setTimeout(() => {
-      setIsLoading(false);
-      router.push("/");
-    }, 2000);
+    const result = await signIn("email", {
+      email: email,
+      redirect: false,
+      callbackUrl: searchParams.get("from") || "/",
+    });
+
+    setIsLoading(false);
+
+    if (!result?.ok) {
+      console.info("Sign in failed.", result?.error);
+      return;
+    }
+
+    console.info("Please check your email.");
+
+    setEmail("");
   }
 
   return (
@@ -38,10 +51,12 @@ export function AuthForm({ className, ...props }: AuthFormProps) {
               id="email"
               placeholder="name@example.com"
               type="email"
+              value={email}
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
               disabled={isLoading}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <Label className="sr-only" htmlFor="email">
               Password
