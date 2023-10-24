@@ -33,7 +33,7 @@ export default function LogOutPage() {
               type="button"
               onClick={() => {
                 signOut({
-                  callbackUrl: `${window.location.origin}/api/auth/login`,
+                  callbackUrl: `${window.location.origin}/login`,
                   redirect: true,
                 });
               }}

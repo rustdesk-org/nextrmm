@@ -2,34 +2,61 @@
 
 import * as React from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { cn } from "~/lib/utils";
 import { Icons } from "~/components/icons";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
+import { useSearchParams } from "next/navigation";
+import { authDataSchema } from "~/lib/validation/auth";
+import { AuthFormType } from "~/types/index.d";
+import { z } from "zod";
 
-interface AuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface AuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
+  authFormType: AuthFormType;
+}
 
-export function AuthForm({ className, ...props }: AuthFormProps) {
+type AuthFormData = z.infer<typeof authDataSchema>;
+
+export function AuthForm({ className, authFormType, ...props }: AuthFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  function onSubmit(event: React.SyntheticEvent) {
-    event.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<AuthFormData>({
+    resolver: zodResolver(authDataSchema),
+  });
+
+  async function onSubmit(data: AuthFormData) {
     setIsLoading(true);
 
-    setTimeout(() => {
-      setIsLoading(false);
-      router.push("/");
-    }, 2000);
+    const result = await signIn("email", {
+      email: data.email,
+      redirect: false,
+      callbackUrl: searchParams.get("from") || "/",
+    });
+
+    setIsLoading(false);
+
+    if (!result?.ok) {
+      console.info("Sign in failed.", result?.error);
+      return;
+    }
+
+    console.info("Please check your email.");
   }
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>
-      <form onSubmit={onSubmit}>
-        <div className="grid gap-2">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="grid gap-4">
           <div className="grid gap-2">
             <Label className="sr-only" htmlFor="email">
               Email
@@ -42,25 +69,21 @@ export function AuthForm({ className, ...props }: AuthFormProps) {
               autoComplete="email"
               autoCorrect="off"
               disabled={isLoading}
+              {...register("email")}
             />
-            <Label className="sr-only" htmlFor="email">
-              Password
-            </Label>
-            <Input
-              id="password"
-              placeholder="*********"
-              type="password"
-              autoCapitalize="none"
-              autoComplete=""
-              autoCorrect="off"
-              disabled={isLoading}
-            />
+            {errors?.email && (
+              <p className="px-1 text-xs text-red-600">
+                {errors.email.message}
+              </p>
+            )}
           </div>
           <Button disabled={isLoading}>
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Sign In with Email
+            {authFormType === AuthFormType.SignIn
+              ? "Sign In with Email"
+              : "Sign Up with Email"}
           </Button>
         </div>
       </form>
@@ -74,7 +97,7 @@ export function AuthForm({ className, ...props }: AuthFormProps) {
           </span>
         </div>
       </div>
-      <div className="grid gap-2">
+      <div className="grid gap-4">
         <Button
           variant="outline"
           type="button"

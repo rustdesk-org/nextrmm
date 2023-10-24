@@ -6,9 +6,16 @@ import {
 } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
+import EmailProvider from "next-auth/providers/email";
+import { Resend } from "resend";
 
 import { env } from "~/env.mjs";
 import { db } from "~/server/db";
+import { SignInTemplate } from "~/components/email-template/sign-in";
+import { SignUpTemplate } from "~/components/email-template/sign-up";
+import { authDataSchema } from "~/lib/validation/auth";
+
+const resend = new Resend("re_T3T2Nw76_LrnEcTmQxUC3oXfdAJ92WQmM");
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -46,19 +53,67 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   },
+  pages: {
+    signIn: "/login",
+  },
   adapter: PrismaAdapter(db),
   providers: [
     // DiscordProvider({
     //   clientId: env.DISCORD_CLIENT_ID,
     //   clientSecret: env.DISCORD_CLIENT_SECRET,
     // }),
+    EmailProvider({
+      server: {
+        host: env.EMAIL_SERVER_HOST,
+        port: env.EMAIL_SERVER_PORT,
+        auth: {
+          user: env.EMAIL_SERVER_USER,
+          pass: env.EMAIL_SERVER_PASSWORD,
+        },
+      },
+      from: env.EMAIL_FROM,
+      sendVerificationRequest: async ({ identifier, url, provider }) => {
+        try {
+          const { host } = new URL(url);
+
+          const isEmailValid = authDataSchema.safeParse({ email: identifier });
+
+          if (!isEmailValid.success) {
+            throw new Error("Invalid Email.");
+          }
+
+          const user = await db.user.findUnique({
+            where: {
+              email: isEmailValid.data.email,
+            },
+            select: {
+              emailVerified: true,
+            },
+          });
+
+          await resend.emails.send({
+            from: provider.from,
+            to: identifier,
+            subject: `Sign in to ${host}.`,
+            text: `Sign in to ${host}\n${url}\n\n`,
+            react: user
+              ? SignInTemplate({ host, url })
+              : SignUpTemplate({ host, url }),
+          });
+        } catch (error) {
+          throw new Error(`Email could not be sent.`);
+        }
+      },
+    }),
     GitHubProvider({
       clientId: env.GITHUB_CLIENT_ID,
       clientSecret: env.GITHUB_CLIENT_SECRET,
+      allowDangerousEmailAccountLinking: true,
     }),
     GoogleProvider({
       clientId: env.GOOGLE_CLIENT_ID,
       clientSecret: env.GOOGLE_CLIENT_SECRET,
+      allowDangerousEmailAccountLinking: true,
     }),
     /**
      * ...add more providers here.
