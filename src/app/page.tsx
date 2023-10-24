@@ -58,7 +58,6 @@ export default async function Home() {
         </div>
 
         <CrudShowcase />
-        <Button>Test</Button>
       </div>
     </main>
   );

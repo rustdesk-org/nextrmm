@@ -10,10 +10,13 @@ import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { useSearchParams } from "next/navigation";
 import { authDataSchema } from "~/lib/validation/auth";
+import { AuthFormType } from "~/types/index.d";
 
-interface AuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface AuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
+  authFormType: AuthFormType;
+}
 
-export function AuthForm({ className, ...props }: AuthFormProps) {
+export function AuthForm({ className, authFormType, ...props }: AuthFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [email, setEmail] = React.useState<string>("");
   const searchParams = useSearchParams();
@@ -51,7 +54,7 @@ export function AuthForm({ className, ...props }: AuthFormProps) {
   return (
     <div className={cn("grid gap-6", className)} {...props}>
       <form onSubmit={onSubmit}>
-        <div className="grid gap-2">
+        <div className="grid gap-4">
           <div className="grid gap-2">
             <Label className="sr-only" htmlFor="email">
               Email
@@ -67,24 +70,14 @@ export function AuthForm({ className, ...props }: AuthFormProps) {
               disabled={isLoading}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <Label className="sr-only" htmlFor="email">
-              Password
-            </Label>
-            <Input
-              id="password"
-              placeholder="*********"
-              type="password"
-              autoCapitalize="none"
-              autoComplete=""
-              autoCorrect="off"
-              disabled={isLoading}
-            />
           </div>
           <Button disabled={isLoading}>
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Sign In with Email
+            {authFormType === AuthFormType.SignIn
+              ? "Sign In with Email"
+              : "Sign Up with Email"}
           </Button>
         </div>
       </form>
@@ -98,7 +91,7 @@ export function AuthForm({ className, ...props }: AuthFormProps) {
           </span>
         </div>
       </div>
-      <div className="grid gap-2">
+      <div className="grid gap-4">
         <Button
           variant="outline"
           type="button"
