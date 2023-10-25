@@ -18,33 +18,8 @@ import {
   CollapsibleContent,
 } from "~/components/ui/collapsible"
 
-interface HeadNavProps {
-  children?: React.ReactNode
-}
-
 interface SideNavProps {
   items: SideNavItem[]
-}
-
-export function HeadNav({ children }: HeadNavProps) {
-  const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false)
-  return (
-    <div className="flex h-12 items-center py-4 gap-6 md:gap-10">
-      <Input
-        className="w-4/12"
-        placeholder="Search"
-      />
-      <div className="flex flex-row-reverse w-8/12">
-      </div>
-      <button
-        className="flex items-center space-x-2 md:hidden"
-        onClick={() => setShowMobileMenu(!showMobileMenu)}
-      >
-        {showMobileMenu ? <Icons.close /> : <Icons.logo />}
-        <span className="font-bold">Menu</span>
-      </button>
-    </div>
-  )
 }
 
 export function AsideShowNav({ items }: SideNavProps){
@@ -53,8 +28,8 @@ export function AsideShowNav({ items }: SideNavProps){
     return null
   }
   return(
-      <nav className={"grid items-start gap-1 w-[200px] bg-[#fefefe]"}>
-          <Link href="/" className="hidden items-center space-x-2 ml-8 my-5 md:flex">
+      <nav className={"grid items-start gap-0.5 w-[200px] bg-[#fefefe]"}>
+          <Link href="/" className="hidden items-center space-x-2 ml-8 mb-2 mt-5 md:flex">
               <Icons.logo />
               <span className="hidden font-bold sm:inline-block">
                   {siteConfig.name}
@@ -67,8 +42,8 @@ export function AsideShowNav({ items }: SideNavProps){
                   <Link key={index} href={item.disabled ? "/" : item.href}>
                   <span
                       className={cn(
-                      "group flex items-center text-sm font-semibold py-2 px-4 border-l-4 border-transparent hover:text-violet-500 hover:border-violet-500 ",
-                      path === item.href ? "bg-accent" : "transparent",
+                      "group flex items-center text-sm font-semibold py-2 px-4 border-l-4 border-transparent hover:bg-accent",
+                      path === item.href ? " text-violet-500 border-violet-500" : "transparent",
                       item.disabled && "cursor-not-allowed opacity-80"
                       )}
                   >
@@ -84,7 +59,7 @@ export function AsideShowNav({ items }: SideNavProps){
               <PopoverTrigger >
                   <span
                       className={cn(
-                          "group flex items-center text-sm font-semibold py-2 px-4 border-l-4 border-transparent hover:text-violet-500 hover:border-violet-500")}
+                          "group flex items-center text-sm font-semibold py-2 px-4 border-l-4 border-transparent hover:border-transparent hover:bg-accent")}
                   >
                       <Icons.favourite className="mr-2 h-4 w-4 opacity-50" />
                       <span>favourite</span>
@@ -94,10 +69,10 @@ export function AsideShowNav({ items }: SideNavProps){
           </Popover>
           <Popover >
               <PopoverTrigger >
-                  <span
+                    <span
                       className={cn(
-                          "group flex items-center text-sm font-semibold py-2 px-4 border-l-4 border-transparent hover:text-violet-500 hover:border-violet-500")}
-                      >
+                          "group flex items-center text-sm font-semibold py-2 px-4 border-l-4 border-transparent hover:border-transparent hover:bg-accent")}
+                    >
                       <Icons.recent className="mr-2 h-4 w-4 opacity-50" />
                       <span>recent</span>
                   </span>
@@ -115,8 +90,8 @@ export function AsideHiddenNav({ items }: SideNavProps){
   }
   return(
       <CollapsibleContent>
-          <nav className={`grid items-start gap-1 w-[50px] bg-[#fefefe]`}>
-              <Link href="/" className="hidden items-center my-5 ml-4 md:flex">
+          <nav className="grid items-start gap-0.5 w-[50px] bg-[#fefefe]">
+              <Link href="/" className="hidden items-center mb-2 mt-5 ml-4 md:flex">
                   <Icons.logo/>
               </Link>
               {items.map((item, index) => {
@@ -126,8 +101,8 @@ export function AsideHiddenNav({ items }: SideNavProps){
                       <Link key={index} href={item.disabled ? "/" : item.href}>
                         <span
                             className={cn(
-                            "group flex items-center text-sm py-2 my-0.5 px-4 border-l-4 border-transparent hover:text-violet-500 hover:border-violet-500 ",
-                            path === item.href ? "bg-accent" : "transparent",
+                            "group flex items-center text-sm font-semibold py-2.5 px-4 border-l-4 border-transparent hover:bg-accent",
+                            path === item.href ? " text-violet-500 border-violet-500" : " ",
                             item.disabled && "cursor-not-allowed opacity-80"
                             )}
                         >
@@ -142,7 +117,7 @@ export function AsideHiddenNav({ items }: SideNavProps){
               <PopoverTrigger >
                   <span
                       className={cn(
-                      "group flex items-center py-2 my-0.5 px-4 border-l-4 border-transparent hover:text-violet-500 hover:border-violet-500")}
+                      "group flex items-center py-2 my-0.5 px-4 border-l-4 border-transparent hover:border-transparent hover:bg-accent")}
                   >
                       <Icons.favourite className="mr-2 h-4 w-4 opacity-50" />
                   </span>
@@ -153,7 +128,7 @@ export function AsideHiddenNav({ items }: SideNavProps){
               <PopoverTrigger >
                   <span
                       className={cn(
-                      "group flex items-center py-2 my-0.5 px-4 border-l-4 border-transparent hover:text-violet-500 hover:border-violet-500")}
+                      "group flex items-center py-2 my-0.5 px-4 border-l-4 border-transparent hover:border-transparent hover:bg-accent")}
                   >
                       <Icons.recent className="mr-2 h-4 w-4 opacity-50" />    
                   </span>
