@@ -41,6 +41,6 @@ export type SideNavItem = {
     }
 )
 
-export type ControlboardConfig = {
+export type ControlBoardConfig = {
   sidebarNav: SidebarNavItem[]
 }
