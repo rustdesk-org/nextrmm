@@ -1,18 +1,73 @@
 import {
-  Loader2,
+  AlertTriangle,
+  ArrowRight,
+  Check,
   ChevronLeft,
-  type LucideProps,
-  type LucideIcon,
-} from "lucide-react";
+  ChevronRight,
+  Command,
+  CreditCard,
+  File,
+  FileText,
+  HelpCircle,
+  Image,
+  Laptop,
+  Monitor,
+  Loader2,
+  LucideProps,
+  Moon,
+  MoreVertical,
+  Pizza,
+  Plus,
+  Settings,
+  SunMedium,
+  Trash,
+  Twitter,
+  User,
+  X,
+  HardDriveDownload,
+  BookText,
+  GaugeCircle,
+  Star,
+  BarChart4,
+  AlignLeft
+} from "lucide-react"
 
-import Logo from "../../public/nextrmm.svg";
+export type Icon = LucideProps
 
-export type Icon = LucideIcon;
-
-export const Icons = {
+export const Icons:any = {
+  logo: ({ ...props }: LucideProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" { ...props }>
+    <g fill="currentColor" strokeWidth="1.10933">
+      <g fill="currentColor" strokeWidth="1.10933">
+        <path d="M-10.287 47.287h-4.362l-9.774-19.5h4.473zm-3.764-1.98h1.201l-7.753-15.644h-1.289z" fill="currentColor" strokeWidth="1.10933" transform="matrix(.99036 0 0 .82051 29.188 -18.8)"/>
+        <path d="M-21.157 47.287h-3.266v-19.5l3.267 4.613z" fill="currentColor" strokeWidth="1.10933" transform="matrix(.99036 0 0 .82051 29.188 -18.8)"/>
+      </g>
+      <g fill="currentColor" strokeWidth="1.10933">
+        <path d="M-21.157 47.287h-3.266v-19.5l3.267 4.613z" fill="currentColor" strokeWidth="1.10933" transform="matrix(-.99036 0 0 -.82051 -5.188 42.8)"/>
+      </g>
+    </g>
+  </svg>
+  ),
+  close: X,
   spinner: Loader2,
   chevronLeft: ChevronLeft,
-  logo: Logo,
+  chevronRight: ChevronRight,
+  trash: Trash,
+  post: FileText,
+  page: File,
+  media: Image,
+  settings: Settings,
+  billing: CreditCard,
+  ellipsis: MoreVertical,
+  add: Plus,
+  warning: AlertTriangle,
+  user: User,
+  arrowRight: ArrowRight,
+  help: HelpCircle,
+  pizza: Pizza,
+  sun: SunMedium,
+  moon: Moon,
+  laptop: Laptop,
   gitHub: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"
@@ -38,4 +93,13 @@ export const Icons = {
       />
     </svg>
   ),
+  twitter: Twitter,
+  check: Check,
+  agents: HardDriveDownload,
+  document: BookText,
+  dashboard: GaugeCircle,
+  machines: Monitor,
+  favourite: Star,
+  recent: BarChart4,
+  asideSwitch: AlignLeft,
 };
