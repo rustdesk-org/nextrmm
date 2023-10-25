@@ -1,22 +1,22 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
-import { useSelectedLayoutSegment } from "next/navigation"
 import { usePathname } from "next/navigation"
 import { HeadNavItem,SideNavItem } from "~/types"
 import { cn } from "~/lib/utils"
-import { Icons } from "~/components/icons"
 import { siteConfig } from "~/config/site"
 import { Input } from "~/components/ui/input"
-
+import { Icons } from "~/components/icons"
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "~/components/ui/accordion"
-import { ModeToggle } from "~/components/mode-toggle"
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "~/components/ui/popover"
+import { Separator } from "~/components/ui/separator"
+import Link from "next/link"
+import {
+  CollapsibleContent,
+} from "~/components/ui/collapsible"
 
 interface HeadNavProps {
   children?: React.ReactNode
@@ -27,9 +27,7 @@ interface SideNavProps {
 }
 
 export function HeadNav({ children }: HeadNavProps) {
-  const segment = useSelectedLayoutSegment()
   const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false)
-
   return (
     <div className="flex h-12 items-center py-4 gap-6 md:gap-10">
       <Input
@@ -37,7 +35,6 @@ export function HeadNav({ children }: HeadNavProps) {
         placeholder="Search"
       />
       <div className="flex flex-row-reverse w-8/12">
-        <ModeToggle/>
       </div>
       <button
         className="flex items-center space-x-2 md:hidden"
@@ -50,59 +47,120 @@ export function HeadNav({ children }: HeadNavProps) {
   )
 }
 
-export function SideNav({ items }: SideNavProps) {
+export function AsideShowNav({ items }: SideNavProps){
   const path = usePathname()
-
   if (!items?.length) {
     return null
   }
-
-  return (
-    <nav className="grid items-start gap-2">
-      <Link href="/" className="hidden items-center space-x-2 ml-5 my-5 md:flex">
-        <Icons.logo />
-        <span className="hidden font-bold sm:inline-block">
-          {siteConfig.name}
-        </span>
-      </Link>
-      {items.map((item, index) => {
-        const Icon = Icons[item.icon || "arrowRight"]
-        return (
-          item.href && (
-            <Link key={index} href={item.disabled ? "/" : item.href}>
-              <span
-                className={cn(
-                  "group flex items-center rounded-md py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
-                  path === item.href ? "bg-accent" : "transparent",
-                  item.disabled && "cursor-not-allowed opacity-80"
-                )}
-              >
-                <Icon className="mr-2 h-4 w-4" />
-                <span>{item.title}</span>
+  return(
+      <nav className={"grid items-start gap-1 w-[200px] bg-[#fefefe]"}>
+          <Link href="/" className="hidden items-center space-x-2 ml-8 my-5 md:flex">
+              <Icons.logo />
+              <span className="hidden font-bold sm:inline-block">
+                  {siteConfig.name}
               </span>
-            </Link>
-          )
-        )
-      })}
-      <Accordion type="single" collapsible className="w-full">
-        <AccordionItem value="item-1">
-          <AccordionTrigger>Favourites</AccordionTrigger>
-          <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
-          </AccordionContent>
-          <AccordionContent>
-            Yes. It comes with default styles that matches the other
-            components&apos; aesthetic.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="item-2">
-          <AccordionTrigger>Recent</AccordionTrigger>
-          <AccordionContent>
-            Yes. It comes with default styles that matches the other
-            components&apos; aesthetic.
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-    </nav>
+          </Link>
+          {items.map((item, index) => {
+          const Icon = Icons[item.icon || "arrowRight"]
+          return (
+              item.href && (
+                  <Link key={index} href={item.disabled ? "/" : item.href}>
+                  <span
+                      className={cn(
+                      "group flex items-center text-sm font-semibold py-2 px-4 border-l-4 border-transparent hover:text-violet-500 hover:border-violet-500 ",
+                      path === item.href ? "bg-accent" : "transparent",
+                      item.disabled && "cursor-not-allowed opacity-80"
+                      )}
+                  >
+                      <Icon className="mr-2 h-4 w-4 opacity-50" />
+                      <span>{item.title}</span>
+                  </span>
+                  </Link>
+              )
+              )
+          })}
+          <Separator className="my-2 !border-[#efefef] !bg-[#efefef]" />
+          <Popover >
+              <PopoverTrigger >
+                  <span
+                      className={cn(
+                          "group flex items-center text-sm font-semibold py-2 px-4 border-l-4 border-transparent hover:text-violet-500 hover:border-violet-500")}
+                  >
+                      <Icons.favourite className="mr-2 h-4 w-4 opacity-50" />
+                      <span>favourite</span>
+                  </span>
+              </PopoverTrigger>
+              <PopoverContent>Place content for the popover here.</PopoverContent>
+          </Popover>
+          <Popover >
+              <PopoverTrigger >
+                  <span
+                      className={cn(
+                          "group flex items-center text-sm font-semibold py-2 px-4 border-l-4 border-transparent hover:text-violet-500 hover:border-violet-500")}
+                      >
+                      <Icons.recent className="mr-2 h-4 w-4 opacity-50" />
+                      <span>recent</span>
+                  </span>
+              </PopoverTrigger>
+              <PopoverContent>Place content for the popover here.</PopoverContent>
+          </Popover>
+      </nav>
+  )
+}
+
+export function AsideHiddenNav({ items }: SideNavProps){
+  const path = usePathname()
+  if (!items?.length) {
+    return null
+  }
+  return(
+      <CollapsibleContent>
+          <nav className={`grid items-start gap-1 w-[50px] bg-[#fefefe]`}>
+              <Link href="/" className="hidden items-center my-5 ml-4 md:flex">
+                  <Icons.logo/>
+              </Link>
+              {items.map((item, index) => {
+                  const Icon = Icons[item.icon || "arrowRight"]
+                  return (
+                  item.href && (
+                      <Link key={index} href={item.disabled ? "/" : item.href}>
+                        <span
+                            className={cn(
+                            "group flex items-center text-sm py-2 my-0.5 px-4 border-l-4 border-transparent hover:text-violet-500 hover:border-violet-500 ",
+                            path === item.href ? "bg-accent" : "transparent",
+                            item.disabled && "cursor-not-allowed opacity-80"
+                            )}
+                        >
+                        <Icon className="mr-2 h-4 w-4 opacity-50" />
+                      </span>
+                      </Link>
+                  )
+                  )
+              })}
+          <Separator className="my-2 !border-[#efefef] !bg-[#efefef]" />
+          <Popover >
+              <PopoverTrigger >
+                  <span
+                      className={cn(
+                      "group flex items-center py-2 my-0.5 px-4 border-l-4 border-transparent hover:text-violet-500 hover:border-violet-500")}
+                  >
+                      <Icons.favourite className="mr-2 h-4 w-4 opacity-50" />
+                  </span>
+              </PopoverTrigger>
+              <PopoverContent>Place content for the popover here.</PopoverContent>
+          </Popover>
+          <Popover >
+              <PopoverTrigger >
+                  <span
+                      className={cn(
+                      "group flex items-center py-2 my-0.5 px-4 border-l-4 border-transparent hover:text-violet-500 hover:border-violet-500")}
+                  >
+                      <Icons.recent className="mr-2 h-4 w-4 opacity-50" />    
+                  </span>
+              </PopoverTrigger>
+              <PopoverContent>Place content for the popover here.</PopoverContent>
+          </Popover>
+          </nav>
+      </CollapsibleContent>
   )
 }

@@ -26,7 +26,10 @@ import {
   X,
   HardDriveDownload,
   BookText,
-  GaugeCircle
+  GaugeCircle,
+  Star,
+  BarChart4,
+  AlignLeft
 } from "lucide-react"
 
 export type Icon = LucideProps
@@ -96,4 +99,7 @@ export const Icons:any = {
   document: BookText,
   dashboard: GaugeCircle,
   machines: Monitor,
+  favourite: Star,
+  recent: BarChart4,
+  asideSwitch: AlignLeft,
 };
