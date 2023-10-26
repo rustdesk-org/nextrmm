@@ -15,8 +15,8 @@
   },
   "settings": {
     "tailwindcss": {
-      "callees": ["cn"],
-      "config": "tailwind.config.js"
+      "callees": ["nextrmm"],
+      "config": "tailwind.config.ts"
     },
     "next": {
       "rootDir": true

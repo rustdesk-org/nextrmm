@@ -1,14 +1,13 @@
 import Link from "next/link";
-
-import { cn } from "~/lib/utils";
-import { buttonVariants } from "~/components/ui/button";
 import { AuthForm } from "~/components/auth-form";
+import { buttonVariants } from "~/components/ui/button";
+import { cn } from "~/lib/utils";
 import { AuthFormType } from "~/types/index.d";
 
 export default function RegisterPage() {
   return (
     <>
-      <div className="container flex h-screen w-screen flex-col items-center justify-center">
+      <div className="container flex h-full w-full flex-col items-center justify-center">
         <Link
           href="/login"
           className={cn(
