@@ -16,7 +16,7 @@ import {
 export default function LogOutPage() {
   return (
     <>
-      <div className="container flex h-screen w-screen flex-col items-center justify-center">
+      <div className="container flex h-full w-full flex-col items-center justify-center">
         <Card className="w-[350px]">
           <CardHeader>
             <CardTitle>Sign Out</CardTitle>

@@ -9,7 +9,7 @@ import { AuthFormType } from "~/types/index.d";
 export default function LogInPage() {
   return (
     <>
-      <div className="container flex h-screen w-screen flex-col items-center justify-center">
+      <div className="container flex h-full w-full flex-col items-center justify-center">
         <Link
           href="/"
           className={cn(

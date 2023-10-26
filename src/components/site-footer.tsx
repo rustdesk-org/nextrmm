@@ -1,14 +1,8 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { siteConfig } from "~/config/site"
-import { cn } from "~/lib/utils"
-import { Icons } from "~/components/icons"
-import { ModeToggle } from "~/components/mode-toggle"
+import * as React from "react";
+import { cn } from "~/lib/utils";
 
 export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
-  return (
-    <footer className={cn(className)}>
-    </footer>
-  )
+  return <footer className={cn(className)}></footer>;
 }

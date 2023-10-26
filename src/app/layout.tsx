@@ -2,11 +2,10 @@ import "~/styles/globals.css";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
 import { TRPCReactProvider } from "~/trpc/react";
-import { siteConfig } from "~/config/site"
-import { SiteFooter } from "~/components/site-footer"
-// import { UserAccountNav } from "~/components/user-account-nav"
-import { ThemeProvider } from "~/components/theme-provider"
-import { BodyLayout } from "~/components/body-layout"
+import { siteConfig } from "~/config/site";
+import { SiteFooter } from "~/components/site-footer";
+import { ThemeProvider } from "~/components/theme-provider";
+import { BodyLayout } from "~/components/body-layout";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -19,11 +18,7 @@ export const metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: [
-    "Next.js",
-    "NextRMM",
-    "RMM",
-  ],
+  keywords: ["Next.js", "NextRMM", "RMM"],
   creator: "NextRMM",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
@@ -39,8 +34,9 @@ export const metadata = {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
   },
+  metadataBase: "http://localhost:3000",
   // manifest: `${siteConfig.url}/site.webmanifest`,
-}
+};
 
 export default function RootLayout({
   children,
@@ -52,9 +48,10 @@ export default function RootLayout({
       <body className={`font-sans ${inter.variable}`}>
         <TRPCReactProvider headers={headers()}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <BodyLayout children={children}/>
+            <BodyLayout children={children} />
+            {/* {children} */}
             <SiteFooter className="border-t" />
-            </ThemeProvider>
+          </ThemeProvider>
         </TRPCReactProvider>
       </body>
     </html>
