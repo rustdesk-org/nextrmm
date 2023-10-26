@@ -48,8 +48,7 @@ export default function RootLayout({
       <body className={`font-sans ${inter.variable}`}>
         <TRPCReactProvider headers={headers()}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <BodyLayout children={children} />
-            {/* {children} */}
+            <BodyLayout>{children}</BodyLayout>
             <SiteFooter className="border-t" />
           </ThemeProvider>
         </TRPCReactProvider>
