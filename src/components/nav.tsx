@@ -3,18 +3,17 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-import { SideNavItem } from "~/types";
-import { cn } from "~/lib/utils";
-import { siteConfig } from "~/config/site";
 import { Icons } from "~/components/icons";
+import { CollapsibleContent } from "~/components/ui/collapsible";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "~/components/ui/popover";
 import { Separator } from "~/components/ui/separator";
-import { CollapsibleContent } from "~/components/ui/collapsible";
+import { siteConfig } from "~/config/site";
+import { cn } from "~/lib/utils";
+import { SideNavItem } from "~/types";
 
 interface SideNavProps {
   items: SideNavItem[];

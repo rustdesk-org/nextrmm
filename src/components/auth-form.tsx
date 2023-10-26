@@ -1,19 +1,18 @@
 "use client";
 
 import * as React from "react";
+import { useSearchParams } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-
-import { cn } from "~/lib/utils";
+import { z } from "zod";
 import { Icons } from "~/components/icons";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { useSearchParams } from "next/navigation";
+import { cn } from "~/lib/utils";
 import { authDataSchema } from "~/lib/validation/auth";
 import { AuthFormType } from "~/types/index.d";
-import { z } from "zod";
 
 interface AuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
   authFormType: AuthFormType;

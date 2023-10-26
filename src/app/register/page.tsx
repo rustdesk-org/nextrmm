@@ -1,8 +1,7 @@
 import Link from "next/link";
-
-import { cn } from "~/lib/utils";
-import { buttonVariants } from "~/components/ui/button";
 import { AuthForm } from "~/components/auth-form";
+import { buttonVariants } from "~/components/ui/button";
+import { cn } from "~/lib/utils";
 import { AuthFormType } from "~/types/index.d";
 
 export default function RegisterPage() {

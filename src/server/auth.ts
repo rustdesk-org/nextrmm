@@ -4,16 +4,15 @@ import {
   type DefaultSession,
   type NextAuthOptions,
 } from "next-auth";
+import EmailProvider from "next-auth/providers/email";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import EmailProvider from "next-auth/providers/email";
 import { Resend } from "resend";
-
-import { env } from "~/env.mjs";
-import { db } from "~/server/db";
 import { SignInTemplate } from "~/components/email-template/sign-in";
 import { SignUpTemplate } from "~/components/email-template/sign-up";
+import { env } from "~/env.mjs";
 import { authDataSchema } from "~/lib/validation/auth";
+import { db } from "~/server/db";
 
 const resend = new Resend("re_T3T2Nw76_LrnEcTmQxUC3oXfdAJ92WQmM");
 

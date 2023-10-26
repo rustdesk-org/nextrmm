@@ -1,4 +1,4 @@
-import { ControlBoardConfig } from "~/types"
+import { ControlBoardConfig } from "~/types";
 
 export const controlboardConfig: ControlBoardConfig = {
   sidebarNav: [
@@ -37,4 +37,4 @@ export const controlboardConfig: ControlBoardConfig = {
       href: "/about",
     },
   ],
-}
+};

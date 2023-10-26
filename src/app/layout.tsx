@@ -1,11 +1,11 @@
 import "~/styles/globals.css";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
-import { TRPCReactProvider } from "~/trpc/react";
-import { siteConfig } from "~/config/site";
+import { BodyLayout } from "~/components/body-layout";
 import { SiteFooter } from "~/components/site-footer";
 import { ThemeProvider } from "~/components/theme-provider";
-import { BodyLayout } from "~/components/body-layout";
+import { siteConfig } from "~/config/site";
+import { TRPCReactProvider } from "~/trpc/react";
 
 const inter = Inter({
   subsets: ["latin"],

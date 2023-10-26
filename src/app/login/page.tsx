@@ -1,5 +1,4 @@
 import Link from "next/link";
-
 import { AuthForm } from "~/components/auth-form";
 import { Icons } from "~/components/icons";
 import { buttonVariants } from "~/components/ui/button";
