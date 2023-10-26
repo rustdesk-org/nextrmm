@@ -45,12 +45,21 @@ export default async function Home() {
             <p className="text-center text-2xl text-white">
               {session && <span>Logged in as {session.user?.name}</span>}
             </p>
-            <Link
-              href={session ? "/logout" : "/login"}
-              className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
-            >
-              {session ? "Sign out" : "Sign in"}
-            </Link>
+            {session ? (
+              <Link
+                href="/api/auth/signout"
+                className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
+              >
+                Sign Out
+              </Link>
+            ) : (
+              <Link
+                href="/login"
+                className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
+              >
+                Sign in
+              </Link>
+            )}
           </div>
         </div>
 
