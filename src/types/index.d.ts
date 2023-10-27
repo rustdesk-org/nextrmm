@@ -1,46 +1,51 @@
+import { Icons } from "~/components/icons";
+
 export enum AuthFormType {
   SignIn,
   Register,
 }
 
-import { Icons } from "~/components/icons"
-
 export type SiteConfig = {
-  name: string
-  description: string
-  url: string
-  ogImage: string
+  name: string;
+  description: string;
+  url: string;
+  ogImage: string;
   links: {
-    github: string
-  }
-}
+    github: string;
+  };
+};
 
 export type NavItem = {
-  title: string
-  href: string
-  disabled?: boolean
-}
+  title: string;
+  href: string;
+  disabled?: boolean;
+};
 
-export type HeadNavItem = NavItem
+export type HeadNavItem = NavItem;
 
 export type SideNavItem = {
-  title: string
-  disabled?: boolean
-  external?: boolean
-  content?:string
-  icon?: keyof typeof Icons
+  title: string;
+  disabled?: boolean;
+  external?: boolean;
+  icon?: keyof typeof Icons;
 } & (
   | {
-      href: string
-      items?: never
+      href: string;
+      items?: never;
     }
   | {
-      href?: string
-      items: NavLink[]
+      href?: string;
+      items: NavLink[];
     }
-)
+);
+
+export type SideNavPopoverItem = {
+  title: string;
+  content: string;
+  icon?: keyof typeof Icons;
+};
 
 export type ControlBoardConfig = {
-  sidebarUpNav: SideNavItem[]
-  sidebarDownNav: SideNavItem[]
-}
+  sidebarUpNav: SideNavItem[];
+  sidebarDownNav: SideNavPopoverItem[];
+};

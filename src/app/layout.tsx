@@ -34,8 +34,6 @@ export const metadata = {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
   },
-  metadataBase: "http://localhost:3000",
-  // manifest: `${siteConfig.url}/site.webmanifest`,
 };
 
 export default function RootLayout({
