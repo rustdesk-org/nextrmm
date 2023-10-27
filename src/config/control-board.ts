@@ -1,7 +1,7 @@
-import { ControlBoardConfig } from "~/types";
+import { ControlBoardConfig } from "~/types"
 
 export const controlboardConfig: ControlBoardConfig = {
-  sidebarNav: [
+  sidebarUpNav: [
     {
       title: "Dashboard",
       href: "/",
@@ -37,4 +37,16 @@ export const controlboardConfig: ControlBoardConfig = {
       href: "/about",
     },
   ],
-};
+  sidebarDownNav: [
+    {
+      title: "Favourite",
+      icon: "favourite",
+      content: "favourite"
+    },
+    {
+      title: "Recent",
+      icon: "recent",
+      content: "recent"
+    },
+  ],
+}

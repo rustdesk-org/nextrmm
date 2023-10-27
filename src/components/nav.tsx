@@ -11,21 +11,20 @@ import {
   PopoverTrigger,
 } from "~/components/ui/popover";
 import { Separator } from "~/components/ui/separator";
+import { controlboardConfig } from "~/config/control-board";
 import { siteConfig } from "~/config/site";
 import { cn } from "~/lib/utils";
-import { SideNavItem } from "~/types";
+import { SideNavItem, SideNavPopoverItem } from "~/types";
 
-interface SideNavProps {
-  items: SideNavItem[];
-}
-
-export function AsideShowNav({ items }: SideNavProps) {
+export function AsideShowNav() {
+  const upItems: SideNavItem[] = controlboardConfig.sidebarUpNav;
+  const downItems: SideNavPopoverItem[] = controlboardConfig.sidebarDownNav;
   const path = usePathname();
-  if (!items?.length) {
+  if (!upItems?.length || !downItems?.length) {
     return null;
   }
   return (
-    <nav className={"grid w-[200px] items-start gap-0.5 bg-[#fefefe]"}>
+    <div>
       <Link
         href="/"
         className="mb-2 ml-8 mt-5 hidden items-center space-x-2 md:flex"
@@ -35,7 +34,7 @@ export function AsideShowNav({ items }: SideNavProps) {
           {siteConfig.name}
         </span>
       </Link>
-      {items.map((item, index) => {
+      {upItems.map((item, index) => {
         const Icon = Icons[item.icon || "arrowRight"];
         return (
           item.href && (
@@ -57,48 +56,45 @@ export function AsideShowNav({ items }: SideNavProps) {
         );
       })}
       <Separator className="my-2 !border-[#efefef] !bg-[#efefef]" />
-      <Popover>
-        <PopoverTrigger>
-          <span
-            className={cn(
-              "group flex items-center border-l-4 border-transparent px-4 py-2 text-sm font-semibold hover:border-transparent hover:bg-accent",
-            )}
-          >
-            <Icons.favourite className="mr-2 h-4 w-4 opacity-50" />
-            <span>favourite</span>
-          </span>
-        </PopoverTrigger>
-        <PopoverContent>Place content for the popover here.</PopoverContent>
-      </Popover>
-      <Popover>
-        <PopoverTrigger>
-          <span
-            className={cn(
-              "group flex items-center border-l-4 border-transparent px-4 py-2 text-sm font-semibold hover:border-transparent hover:bg-accent",
-            )}
-          >
-            <Icons.recent className="mr-2 h-4 w-4 opacity-50" />
-            <span>recent</span>
-          </span>
-        </PopoverTrigger>
-        <PopoverContent>Place content for the popover here.</PopoverContent>
-      </Popover>
-    </nav>
+      {downItems.map((item, index) => {
+        const Icon = Icons[item.icon || "arrowRight"];
+        const Content = PopOverContents[item.content];
+        return (
+          <Popover key={index}>
+            <PopoverTrigger className="w-full">
+              <span
+                className={cn(
+                  "group flex items-center border-l-4 border-transparent px-4 py-2 text-sm font-semibold hover:bg-accent",
+                )}
+              >
+                <Icon className="mr-2 h-4 w-4 opacity-50" />
+                <span>{item.title}</span>
+              </span>
+            </PopoverTrigger>
+            <PopoverContent>
+              <Content />
+            </PopoverContent>
+          </Popover>
+        );
+      })}
+    </div>
   );
 }
 
-export function AsideHiddenNav({ items }: SideNavProps) {
+export function AsideHiddenNav() {
+  const upItems: SideNavItem[] = controlboardConfig.sidebarUpNav;
+  const downItems: SideNavPopoverItem[] = controlboardConfig.sidebarDownNav;
   const path = usePathname();
-  if (!items?.length) {
+  if (!upItems?.length || !downItems?.length) {
     return null;
   }
   return (
     <CollapsibleContent>
-      <nav className="grid w-[50px] items-start gap-0.5 bg-[#fefefe]">
+      <div>
         <Link href="/" className="mb-2 ml-4 mt-5 hidden items-center md:flex">
           <Icons.logo />
         </Link>
-        {items.map((item, index) => {
+        {upItems.map((item, index) => {
           const Icon = Icons[item.icon || "arrowRight"];
           return (
             item.href && (
@@ -119,31 +115,36 @@ export function AsideHiddenNav({ items }: SideNavProps) {
           );
         })}
         <Separator className="my-2 !border-[#efefef] !bg-[#efefef]" />
-        <Popover>
-          <PopoverTrigger>
-            <span
-              className={cn(
-                "group my-0.5 flex items-center border-l-4 border-transparent px-4 py-2 hover:border-transparent hover:bg-accent",
-              )}
-            >
-              <Icons.favourite className="mr-2 h-4 w-4 opacity-50" />
-            </span>
-          </PopoverTrigger>
-          <PopoverContent>Place content for the popover here.</PopoverContent>
-        </Popover>
-        <Popover>
-          <PopoverTrigger>
-            <span
-              className={cn(
-                "group my-0.5 flex items-center border-l-4 border-transparent px-4 py-2 hover:border-transparent hover:bg-accent",
-              )}
-            >
-              <Icons.recent className="mr-2 h-4 w-4 opacity-50" />
-            </span>
-          </PopoverTrigger>
-          <PopoverContent>Place content for the popover here.</PopoverContent>
-        </Popover>
-      </nav>
+        {downItems.map((item, index) => {
+          const Icon = Icons[item.icon || "arrowRight"];
+          const Content = PopOverContents[item.content];
+          return (
+            <Popover key={index}>
+              <PopoverTrigger className="w-full">
+                <span
+                  className={cn(
+                    "group my-0.5 flex items-center border-l-4 border-transparent px-4 py-2 hover:bg-accent",
+                  )}
+                >
+                  <Icon className="mr-2 h-4 w-4 opacity-50" />
+                </span>
+              </PopoverTrigger>
+              <PopoverContent>
+                <Content />
+              </PopoverContent>
+            </Popover>
+          );
+        })}
+      </div>
     </CollapsibleContent>
   );
 }
+
+export const PopOverContents: any = {
+  favourite: () => {
+    return <h1>Hello1</h1>;
+  },
+  recent: () => {
+    return <h1>Hello2</h1>;
+  },
+};

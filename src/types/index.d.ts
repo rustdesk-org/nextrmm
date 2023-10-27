@@ -1,4 +1,3 @@
-import type { Icon } from "lucide-react";
 import { Icons } from "~/components/icons";
 
 export enum AuthFormType {
@@ -9,7 +8,6 @@ export enum AuthFormType {
 export type SiteConfig = {
   name: string;
   description: string;
-  ogImage: string;
   links: {
     github: string;
   };
@@ -39,6 +37,13 @@ export type SideNavItem = {
     }
 );
 
+export type SideNavPopoverItem = {
+  title: string;
+  content: string;
+  icon?: keyof typeof Icons;
+};
+
 export type ControlBoardConfig = {
-  sidebarNav: SidebarNavItem[];
+  sidebarUpNav: SideNavItem[];
+  sidebarDownNav: SideNavPopoverItem[];
 };
