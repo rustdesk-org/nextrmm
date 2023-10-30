@@ -11,6 +11,7 @@
     "postinstall": "prisma generate",
     "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
     "lint": "next lint",
+    "type-check": "tsc --pretty --noEmit",
     "start": "next start",
     "pre-commit": "lint-staged"
   },
