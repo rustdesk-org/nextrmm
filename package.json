@@ -9,8 +9,10 @@
     "db:studio": "prisma studio",
     "dev": "next dev",
     "postinstall": "prisma generate",
-    "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
+    "format": "prettier --check \"src/**/*.{ts,tsx,md}\"",
+    "format:fix": "prettier --write \"src/**/*.{ts,tsx,md}\"",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "type-check": "tsc --pretty --noEmit",
     "start": "next start",
     "pre-commit": "lint-staged"

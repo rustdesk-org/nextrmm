@@ -1,4 +1,4 @@
-import { ControlBoardConfig } from "~/types"
+import { ControlBoardConfig } from "~/types";
 
 export const controlboardConfig: ControlBoardConfig = {
   sidebarUpNav: [
@@ -41,12 +41,12 @@ export const controlboardConfig: ControlBoardConfig = {
     {
       title: "Favourite",
       icon: "favourite",
-      content: "favourite"
+      content: "favourite",
     },
     {
       title: "Recent",
       icon: "recent",
-      content: "recent"
+      content: "recent",
     },
   ],
-}
+};
