@@ -20,5 +20,13 @@
     "continue": "O continuar con",
     "sign-in": "Iniciar Sesión con Correo Electrónico",
     "sign-up": "Registrarse con Correo Electrónico"
+  },
+  "sign-in-email-template": {
+    "welcome-back": "¡Bienvenido de nuevo!",
+    "sign-in": "Inicia sesión en"
+  },
+  "sign-up-email-template": {
+    "get-started": "¡Comienza!",
+    "sign-up": "Regístrate en"
   }
 }

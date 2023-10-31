@@ -16,6 +16,7 @@ import { AuthFormType } from "~/types/index.d";
 
 interface AuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
   authFormType: AuthFormType;
+  locale: string;
   d: {
     email: string;
     continue: string;
@@ -29,6 +30,7 @@ type AuthFormData = z.infer<typeof authDataSchema>;
 export function AuthForm({
   className,
   authFormType,
+  locale,
   d,
   ...props
 }: AuthFormProps) {
@@ -48,14 +50,14 @@ export function AuthForm({
     setIsLoading(true);
 
     const result = await signIn("email", {
-      email: data.email,
+      email: `${data.email}+${locale}`,
       redirect: false,
       callbackUrl: searchParams.get("from") || "/",
     });
 
     setIsLoading(false);
 
-    if (!result?.ok) {
+    if (result?.error) {
       console.info("Sign in failed.", result?.error);
       return;
     }

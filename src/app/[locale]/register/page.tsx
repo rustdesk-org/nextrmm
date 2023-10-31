@@ -35,7 +35,11 @@ export default async function RegisterPage({ params: { locale } }: Props) {
                 {d.register["enter-email"]}
               </p>
             </div>
-            <AuthForm authFormType={AuthFormType.Register} d={d["auth-form"]} />
+            <AuthForm
+              authFormType={AuthFormType.Register}
+              locale={locale}
+              d={d["auth-form"]}
+            />
             <p className="px-8 text-center text-sm text-muted-foreground">
               {d.register["click-continue"]}{" "}
               <Link

@@ -20,5 +20,13 @@
     "continue": "Or continue with",
     "sign-in": "Sign In with Email",
     "sign-up": "Sign Up with Email"
+  },
+  "sign-in-email-template": {
+    "welcome-back": "Welcome Back!",
+    "sign-in": "Sign in to"
+  },
+  "sign-up-email-template": {
+    "get-started": "Get Started!",
+    "sign-up": "Sign up to"
   }
 }

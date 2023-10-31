@@ -24,7 +24,11 @@ export default async function LogInPage({ params: { locale } }: Props) {
                 {d.login["enter-email"]}
               </p>
             </div>
-            <AuthForm authFormType={AuthFormType.SignIn} d={d["auth-form"]} />
+            <AuthForm
+              authFormType={AuthFormType.SignIn}
+              locale={locale}
+              d={d["auth-form"]}
+            />
             <p className="px-8 text-center text-sm text-muted-foreground">
               <Link
                 href="/register"
