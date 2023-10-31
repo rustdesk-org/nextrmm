@@ -1,0 +1,32 @@
+{
+  "index": {},
+  "login": {
+    "welcome-back": "Welcom Back",
+    "enter-email": "Enter your email to sign in to your account",
+    "no-account": "Don't have an account? Sign Up",
+    "sign-in": "Sign In"
+  },
+  "register": {
+    "login": "Login",
+    "create-account": "Create a new account",
+    "enter-email": "Enter your email below to create your account",
+    "click-continue": "By clicking continue, you agree to our",
+    "term-service": "Terms of Service",
+    "and": "and",
+    "privacy-policy": "Privacy Policy"
+  },
+  "auth-form": {
+    "email": "Email",
+    "continue": "Or continue with",
+    "sign-in": "Sign In with Email",
+    "sign-up": "Sign Up with Email"
+  },
+  "sign-in-email-template": {
+    "welcome-back": "Welcome Back!",
+    "sign-in": "Sign in to"
+  },
+  "sign-up-email-template": {
+    "get-started": "Get Started!",
+    "sign-up": "Sign up to"
+  }
+}

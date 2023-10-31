@@ -11,6 +11,8 @@ import { Resend } from "resend";
 import { SignInTemplate } from "~/components/email-template/sign-in";
 import { SignUpTemplate } from "~/components/email-template/sign-up";
 import { env } from "~/env.mjs";
+import type { Locale } from "~/i18n-config";
+import { getDictionary } from "~/lib/dictionary";
 import { authDataSchema } from "~/lib/validation/auth";
 import { db } from "~/server/db";
 
@@ -74,8 +76,17 @@ export const authOptions: NextAuthOptions = {
       sendVerificationRequest: async ({ identifier, url, provider }) => {
         try {
           const { host } = new URL(url);
+          const splits = identifier.split("+");
+          const email = splits[0];
+          const locale = splits[1] ?? "en";
 
-          const isEmailValid = authDataSchema.safeParse({ email: identifier });
+          // Email provider lowercase all the letters so we need to transform it back for locales like "es-ES"
+          const transformedLocale = locale
+            .split("-")
+            .map((part, index) => (index > 0 ? part.toUpperCase() : part))
+            .join("-");
+
+          const isEmailValid = authDataSchema.safeParse({ email });
 
           if (!isEmailValid.success) {
             throw new Error("Invalid Email.");
@@ -90,14 +101,18 @@ export const authOptions: NextAuthOptions = {
             },
           });
 
+          const dictionary = await getDictionary(transformedLocale as Locale);
+          const signInDictionary = dictionary["sign-in-email-template"];
+          const signUpDictionary = dictionary["sign-up-email-template"];
+
           await resend.emails.send({
             from: provider.from,
-            to: identifier,
+            to: isEmailValid.data.email,
             subject: `Sign in to ${host}.`,
             text: `Sign in to ${host}\n${url}\n\n`,
             react: user
-              ? SignInTemplate({ host, url })
-              : SignUpTemplate({ host, url }),
+              ? SignInTemplate({ host, url, d: signInDictionary })
+              : SignUpTemplate({ host, url, d: signUpDictionary }),
           });
         } catch (error) {
           throw new Error(`Email could not be sent.`);

@@ -3,19 +3,26 @@ import * as React from "react";
 interface EmailTemplateProps {
   host: string;
   url: string;
+  d: {
+    "get-started": string;
+    "sign-up": string;
+  };
 }
 
 export const SignUpTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
   host,
   url,
-}) => (
-  <div>
-    <h1>Get Started!</h1>
-    <p>
-      Sign up to &nbsp;
-      <span>
-        <a href={url}>{host}</a>
-      </span>
-    </p>
-  </div>
-);
+  d,
+}) => {
+  return (
+    <div>
+      <h1>{d["get-started"]}</h1>
+      <p>
+        {d["sign-up"]}{" "}
+        <span>
+          <a href={url}>{host}</a>
+        </span>
+      </p>
+    </div>
+  );
+};

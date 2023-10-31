@@ -15,6 +15,7 @@ import { controlboardConfig } from "~/config/control-board";
 import { siteConfig } from "~/config/site";
 import { cn } from "~/lib/utils";
 import { SideNavItem, SideNavPopoverItem } from "~/types";
+import { LocaleSwitcher } from "./locale-switcher";
 
 export function AsideShowNav() {
   const upItems: SideNavItem[] = controlboardConfig.sidebarUpNav;
@@ -77,6 +78,10 @@ export function AsideShowNav() {
           </Popover>
         );
       })}
+      <Separator className="my-2 !border-[#efefef] !bg-[#efefef]" />
+      <div className="px-4 py-2">
+        <LocaleSwitcher />
+      </div>
     </div>
   );
 }
