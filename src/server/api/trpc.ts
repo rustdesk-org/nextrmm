@@ -11,6 +11,7 @@ import { type NextRequest } from "next/server";
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
+import { i18n } from "~/i18n-config";
 import { getServerAuthSession } from "~/server/auth";
 import { db } from "~/server/db";
 
@@ -38,11 +39,13 @@ interface CreateContextOptions {
  */
 export const createInnerTRPCContext = async (opts: CreateContextOptions) => {
   const session = await getServerAuthSession();
+  const locale = i18n.locales.map((locale) => ({ locale }));
 
   return {
     session,
     headers: opts.headers,
     db,
+    locale,
   };
 };
 
@@ -54,6 +57,7 @@ export const createInnerTRPCContext = async (opts: CreateContextOptions) => {
  */
 export const createTRPCContext = async (opts: { req: NextRequest }) => {
   // Fetch stuff that depends on the request
+  console.log("opts>>>>", opts);
 
   return await createInnerTRPCContext({
     headers: opts.req.headers,
