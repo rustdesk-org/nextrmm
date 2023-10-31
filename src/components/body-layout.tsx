@@ -22,7 +22,7 @@ export function BodyLayout({ children }: { children: React.ReactNode }) {
           className="fixed h-full "
         >
           <nav
-            className={`flex h-full flex-col items-start gap-0.5 bg-[#fefefe] transition-[width] duration-300 ${
+            className={`flex h-full flex-col items-start gap-0.5 bg-[#fefefe] transition-[width] duration-300 dark:bg-inherit ${
               isSideNavOpen ? "w-[50px]" : "w-[200px]"
             }`}
           >
