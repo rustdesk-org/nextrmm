@@ -1,0 +1,24 @@
+{
+  "index": {},
+  "login": {
+    "welcome-back": "Bienvenido de nuevo",
+    "enter-email": "Introduce tu correo electrónico para iniciar sesión en tu cuenta",
+    "no-account": "¿No tienes una cuenta? Regístrate",
+    "sign-in": "Iniciar Sesión"
+  },
+  "register": {
+    "login": "Iniciar Sesión",
+    "create-account": "Crear una cuenta nueva",
+    "enter-email": "Introduce tu correo electrónico a continuación para crear tu cuenta",
+    "click-continue": "Al hacer clic en continuar, aceptas nuestros",
+    "term-service": "Términos de Servicio",
+    "and": "y",
+    "privacy-policy": "Política de Privacidad"
+  },
+  "auth-form": {
+    "email": "Correo Electrónico",
+    "continue": "O continuar con",
+    "sign-in": "Iniciar Sesión con Correo Electrónico",
+    "sign-up": "Registrarse con Correo Electrónico"
+  }
+}

@@ -16,11 +16,22 @@ import { AuthFormType } from "~/types/index.d";
 
 interface AuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
   authFormType: AuthFormType;
+  d: {
+    email: string;
+    continue: string;
+    "sign-in": string;
+    "sign-up": string;
+  };
 }
 
 type AuthFormData = z.infer<typeof authDataSchema>;
 
-export function AuthForm({ className, authFormType, ...props }: AuthFormProps) {
+export function AuthForm({
+  className,
+  authFormType,
+  d,
+  ...props
+}: AuthFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const searchParams = useSearchParams();
 
@@ -58,7 +69,7 @@ export function AuthForm({ className, authFormType, ...props }: AuthFormProps) {
         <div className="grid gap-4">
           <div className="grid gap-2">
             <Label className="sr-only" htmlFor="email">
-              Email
+              {d.email}
             </Label>
             <Input
               id="email"
@@ -80,9 +91,7 @@ export function AuthForm({ className, authFormType, ...props }: AuthFormProps) {
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            {authFormType === AuthFormType.SignIn
-              ? "Sign In with Email"
-              : "Sign Up with Email"}
+            {authFormType === AuthFormType.SignIn ? d["sign-in"] : d["sign-up"]}
           </Button>
         </div>
       </form>
@@ -92,7 +101,7 @@ export function AuthForm({ className, authFormType, ...props }: AuthFormProps) {
         </div>
         <div className="relative flex justify-center text-xs uppercase">
           <span className="bg-background px-2 text-muted-foreground">
-            Or continue with
+            {d.continue}
           </span>
         </div>
       </div>
