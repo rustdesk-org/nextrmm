@@ -13,6 +13,7 @@ import {
   HardDriveDownload,
   HelpCircle,
   Image,
+  Languages,
   Laptop,
   Loader2,
   LucideProps,
@@ -86,6 +87,7 @@ export const Icons: any = {
   help: HelpCircle,
   pizza: Pizza,
   sun: SunMedium,
+  languages: Languages,
   moon: Moon,
   laptop: Laptop,
   gitHub: ({ ...props }: LucideProps) => (
