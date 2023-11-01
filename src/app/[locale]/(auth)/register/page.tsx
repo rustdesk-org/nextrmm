@@ -15,7 +15,7 @@ export default async function RegisterPage({ params: { locale } }: Props) {
 
   return (
     <>
-      <div className="container flex h-full w-full flex-col items-center justify-center">
+      <div className="container flex h-full min-h-screen w-full flex-col items-center justify-center">
         <Link
           href="/login"
           className={cn(
