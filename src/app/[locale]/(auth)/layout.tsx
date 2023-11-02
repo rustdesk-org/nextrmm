@@ -33,6 +33,25 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </nav>
       </div>
       <main className="min-w-screen min-h-screen">{children}</main>
+      <div className="absolute bottom-12 w-full px-4 text-center">
+        <p className="text-xs text-muted-foreground">
+          By continuing, you agree to NextRMM&apos;s{" "}
+          <Link
+            href="/terms"
+            className="hover:text-brand underline underline-offset-4"
+          >
+            Terms of Service
+          </Link>{" "}
+          and{" "}
+          <Link
+            href="/privacy"
+            className="hover:text-brand underline underline-offset-4"
+          >
+            Privacy Policy
+          </Link>
+          .
+        </p>
+      </div>
     </>
   );
 }
