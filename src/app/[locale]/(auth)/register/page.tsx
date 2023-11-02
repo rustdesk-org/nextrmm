@@ -34,8 +34,7 @@ export default async function RegisterPage({ params: { locale } }: Props) {
                 href="/login"
                 className="hover:text-brand underline underline-offset-4"
               >
-                {/* {d.login["no-account"]} */}
-                Have an account? Sign In Now
+                {d.register["sign-in"]}
               </Link>
             </p>
           </div>

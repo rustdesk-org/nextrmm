@@ -2,9 +2,18 @@ import Link from "next/link";
 import { Icons } from "~/components/icons";
 import { buttonVariants } from "~/components/ui/button";
 import { siteConfig } from "~/config/site";
+import type { Locale } from "~/i18n-config";
+import { getDictionary } from "~/lib/dictionary";
 import { cn } from "~/lib/utils";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+type Props = {
+  children: React.ReactNode;
+  params: { locale: Locale };
+};
+
+export default async function Layout({ children, params: { locale } }: Props) {
+  const d = await getDictionary(locale);
+
   return (
     <>
       <div className="absolute top-0 mx-auto w-full px-8 pt-6 sm:px-6 lg:px-8">
@@ -27,7 +36,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               )}
             >
               <Icons.bookText size={15} />
-              <span>Document</span>
+              <span>{d["auth-layout"].document}</span>
             </Link>
           </div>
         </nav>
@@ -35,19 +44,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <main className="min-w-screen min-h-screen">{children}</main>
       <div className="absolute bottom-12 w-full px-4 text-center">
         <p className="text-xs text-muted-foreground">
-          By continuing, you agree to NextRMM&apos;s{" "}
+          {d["auth-layout"]["click-continue"]}{" "}
           <Link
             href="/terms"
             className="hover:text-brand underline underline-offset-4"
           >
-            Terms of Service
+            {d["auth-layout"]["term-service"]}
           </Link>{" "}
-          and{" "}
+          {d["auth-layout"].and}{" "}
           <Link
             href="/privacy"
             className="hover:text-brand underline underline-offset-4"
           >
-            Privacy Policy
+            {d["auth-layout"]["privacy-policy"]}
           </Link>
           .
         </p>
