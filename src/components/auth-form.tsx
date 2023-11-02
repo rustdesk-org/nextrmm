@@ -66,9 +66,9 @@ export function AuthForm({
   }
 
   return (
-    <div className={cn("grid gap-6", className)} {...props}>
+    <div className={cn("grid gap-9", className)} {...props}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid gap-4">
+        <div className="grid gap-6">
           <div className="grid gap-2">
             <Label className="sr-only" htmlFor="email">
               {d.email}
@@ -107,7 +107,7 @@ export function AuthForm({
           </span>
         </div>
       </div>
-      <div className="grid gap-4">
+      <div className="grid gap-6">
         <Button
           variant="outline"
           type="button"
