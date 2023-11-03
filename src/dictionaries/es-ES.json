@@ -1,5 +1,12 @@
 {
   "index": {},
+  "auth-layout": {
+    "document": "Documento",
+    "click-continue": "Al continuar, aceptas los",
+    "term-service": "Términos de Servicio",
+    "and": "y",
+    "privacy-policy": "Política de Privacidad de NextRMM"
+  },
   "login": {
     "welcome-back": "Bienvenido de nuevo",
     "enter-email": "Introduce tu correo electrónico para iniciar sesión en tu cuenta",
@@ -7,13 +14,9 @@
     "sign-in": "Iniciar Sesión"
   },
   "register": {
-    "login": "Iniciar Sesión",
+    "sign-in": "¿Ya tienes una cuenta? Iniciar sesión ahora",
     "create-account": "Crear una cuenta nueva",
-    "enter-email": "Introduce tu correo electrónico a continuación para crear tu cuenta",
-    "click-continue": "Al hacer clic en continuar, aceptas nuestros",
-    "term-service": "Términos de Servicio",
-    "and": "y",
-    "privacy-policy": "Política de Privacidad"
+    "enter-email": "Introduce tu correo electrónico a continuación para crear tu cuenta"
   },
   "auth-form": {
     "email": "Correo Electrónico",

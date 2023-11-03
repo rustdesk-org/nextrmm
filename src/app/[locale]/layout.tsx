@@ -1,8 +1,6 @@
 import "~/styles/globals.css";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
-import { BodyLayout } from "~/components/body-layout";
-import { SiteFooter } from "~/components/site-footer";
 import { ThemeProvider } from "~/components/theme-provider";
 import { siteConfig } from "~/config/site";
 import { i18n } from "~/i18n-config";
@@ -52,8 +50,7 @@ export default function RootLayout({ children, params: { locale } }: Props) {
       <body className={`font-sans ${inter.variable}`}>
         <TRPCReactProvider headers={headers()}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <BodyLayout>{children}</BodyLayout>
-            <SiteFooter className="border-t" />
+            {children}
           </ThemeProvider>
         </TRPCReactProvider>
       </body>
