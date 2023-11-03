@@ -16,7 +16,7 @@ export default async function Layout({ children, params: { locale } }: Props) {
 
   return (
     <>
-      <div className="absolute top-0 mx-auto w-full px-8 pt-6 sm:px-6 lg:px-8">
+      <div className="absolute top-0 mx-auto w-full px-8 pt-6 sm:px-6 md:w-1/2 lg:px-8">
         <nav className="flex items-center justify-between">
           <div className="flex shrink-0 grow items-center md:pl-4 lg:grow-0">
             <Link
@@ -27,7 +27,7 @@ export default async function Layout({ children, params: { locale } }: Props) {
               <span className="font-bold">{siteConfig.name}</span>
             </Link>
           </div>
-          <div className=" hidden items-center md:ml-10 md:flex md:pr-4">
+          {/* <div className=" hidden items-center md:ml-10 md:flex md:pr-4">
             <Link
               href="/document"
               className={cn(
@@ -38,12 +38,15 @@ export default async function Layout({ children, params: { locale } }: Props) {
               <Icons.bookText size={15} />
               <span>{d["auth-layout"].document}</span>
             </Link>
-          </div>
+          </div> */}
         </nav>
       </div>
-      <main className="min-w-screen min-h-screen">{children}</main>
-      <div className="absolute bottom-12 w-full px-4 text-center">
-        <p className="text-xs text-muted-foreground">
+      <main className="md:grid md:grid-cols-2">
+        <div className="">{children}</div>
+        <div className=" bg-auth-bg"></div>
+      </main>
+      <div className="absolute bottom-12 w-full px-8 text-center md:w-1/2">
+        <p className="mx-auto text-xs text-muted-foreground">
           {d["auth-layout"]["click-continue"]}{" "}
           <Link
             href="/terms"
