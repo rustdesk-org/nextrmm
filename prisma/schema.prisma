@@ -71,3 +71,193 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+//Software manage
+model Software {
+  id      Int      @id @default(autoincrement())
+  type    String
+  version String
+  content Json     @default("{}") //{name：{maintainer:xxx,version:xxx,description:xxx}}
+  Device  Device[]
+}
+
+//System update
+model SystemUpdate {
+  id        Int      @id @default(autoincrement())
+  device    Device   @relation(fields: [deviceID], references: [id])
+  deviceID  Int      @unique
+  content   Json     @default("{}")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SystemUpdatePolicy {
+  id        Int      @id @default(autoincrement())
+  content   Json     @default("{}")
+  device    Device[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+//Agent
+model Agent {
+  id         Int      @id @default(autoincrement())
+  version    String
+  lastSeen   DateTime
+  os         System
+  secret     String
+  fileName   String
+  autoUpdate Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  Device     Device?
+}
+
+//Device manage
+enum Connection {
+  Online
+  Offline
+}
+
+enum System {
+  Windows
+  Linux
+  MacOS
+  Android
+  IOS
+  Other
+}
+
+enum DeviceType {
+  Server
+  Desktop
+  Embeded
+  workstation
+}
+
+model Device {
+  id                   Int                @id @default(autoincrement())
+  name                 String
+  agent                Agent              @relation(fields: [agentId], references: [id])
+  agentId              Int                @unique
+  type                 String
+  os                   System
+  osFullName           String
+  conection            Connection
+  remoteCode           Json
+  health               Json
+  software             Software?          @relation(fields: [softwareId], references: [id])
+  softwareId           Int?
+  internalIp           String
+  publicIp             String
+  location             Location?          @relation(fields: [locationId], references: [id])
+  locationId           Int?
+  SystemUpdate         SystemUpdate?
+  systemUpdatePolicy   SystemUpdatePolicy @relation(fields: [systemUpdatePolicyId], references: [id])
+  systemUpdatePolicyId Int
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+}
+
+model Location {
+  id             Int           @id @default(autoincrement())
+  name           String
+  devices        Device[]
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  Organization   Organization? @relation(fields: [organizationId], references: [id])
+  organizationId Int?
+}
+
+model Organization {
+  id        Int        @id @default(autoincrement())
+  name      String
+  locations Location[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+//Task
+model Task {
+  id        Int      @id @default(autoincrement())
+  name      String
+  cron      String
+  duration  Int // Duration (in seconds)
+  content   Json     @default("{\"script\":0}")
+  result    Json     @default("{}")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+//Alert
+model Alert {
+  id        Int      @id @default(autoincrement())
+  name      String
+  content   Json     @default("{}")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Script
+model Script {
+  id              Int      @id @default(autoincrement())
+  name            String
+  filename        String
+  description     String
+  type            String
+  shell           String
+  category        String[]
+  supportPlatform String[]
+  code            String
+  codeBase64      String
+  codeHash        String
+  args            String[]
+  envVars         String[]
+  hidden          Boolean  @default(true)
+  isTemplate      Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+//Report
+enum ReportType {
+  Markdown
+  Html
+}
+
+model Report {
+  id         Int        @id @default(autoincrement())
+  type       ReportType
+  name       String
+  content    String
+  isTemplate Boolean    @default(false)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+}
+
+//Log
+enum LogType {
+  Task
+  UserAction
+  Alert
+}
+
+model Log {
+  id         Int      @id @default(autoincrement())
+  type       LogType
+  name       String
+  content    String
+  isTemplate Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+// Settings
+model Settings {
+  id               Int      @id @default(autoincrement())
+  announceSettings Json     @default("{\"SMTP\":0,\"WebHook\":0,\"SMS\":0}")
+  aiSettings       Json     @default("{\"OpenAI\":0}")
+  defaultTimeZone  String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
