@@ -138,7 +138,8 @@ enum DeviceType {
   Server
   Desktop
   Embeded
-  workstation
+  Workstation
+  Others
 }
 
 model Device {
@@ -146,7 +147,7 @@ model Device {
   name                 String
   agent                Agent               @relation(fields: [agentId], references: [id])
   agentId              String              @unique
-  type                 String
+  type                 DeviceType
   os                   System
   osFullName           String
   conection            Connection
