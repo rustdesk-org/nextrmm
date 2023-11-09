@@ -224,12 +224,12 @@ model Script {
   codeHash        String
   args            String[]
   envVars         String[]
-  hidden          Boolean  @default(true)
+  isHiddenRunning Boolean  @default(true)
   isTemplate      Boolean  @default(false)
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
-  @@index([name, type, codeHash, hidden, isTemplate])
+  @@index([name, type, codeHash, isHiddenRunning, isTemplate])
 }
 
 //Report
