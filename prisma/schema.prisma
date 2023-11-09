@@ -79,6 +79,8 @@ model Software {
   version String
   content Json     @default("{}") //{name：{maintainer:xxx,version:xxx,description:xxx}}
   Device  Device[]
+
+  @@index([type])
 }
 
 //System update
@@ -89,6 +91,8 @@ model SystemUpdate {
   content   Json     @default("{}")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([deviceID])
 }
 
 model SystemUpdatePolicy {
@@ -111,6 +115,8 @@ model Agent {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   Device     Device?
+
+  @@index([os, autoUpdate])
 }
 
 //Device manage
@@ -157,6 +163,8 @@ model Device {
   systemUpdatePolicyId String?
   createdAt            DateTime            @default(now())
   updatedAt            DateTime            @updatedAt
+
+  @@index([name, type, agentId, locationId])
 }
 
 model Location {
@@ -167,6 +175,8 @@ model Location {
   updatedAt      DateTime     @updatedAt
   Organization   Organization @relation(fields: [organizationId], references: [id])
   organizationId String       @unique
+
+  @@index([name])
 }
 
 model Organization {
@@ -175,6 +185,8 @@ model Organization {
   locations Location[]
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
+
+  @@index([name])
 }
 
 //Task
@@ -187,6 +199,9 @@ model Task {
   result    Json     @default("{}")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([name])
+  @@index([content(ops: JsonbPathOps)], type: Gin)
 }
 
 //Alert
@@ -196,6 +211,8 @@ model Alert {
   content   Json     @default("{}")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([name])
 }
 
 // Script
@@ -217,6 +234,8 @@ model Script {
   isTemplate      Boolean  @default(false)
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
+
+  @@index([name, type, codeHash, hidden, isTemplate])
 }
 
 //Report
@@ -233,6 +252,8 @@ model Report {
   isTemplate Boolean    @default(false)
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
+
+  @@index([name, type, isTemplate])
 }
 
 //Log
@@ -250,6 +271,8 @@ model Log {
   isTemplate Boolean  @default(false)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+
+  @@index([name, type, isTemplate])
 }
 
 // Settings
@@ -260,4 +283,6 @@ model Settings {
   defaultTimeZone  String
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
+
+  @@index([aiSettings(ops: JsonbPathOps), announceSettings(ops: JsonbPathOps)], type: Gin)
 }
