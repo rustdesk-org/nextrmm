@@ -74,7 +74,7 @@ model VerificationToken {
 
 //Software manage
 model Software {
-  id      Int      @id @default(autoincrement())
+  id      String   @id @default(uuid())
   type    String
   version String
   content Json     @default("{}") //{name：{maintainer:xxx,version:xxx,description:xxx}}
@@ -83,16 +83,16 @@ model Software {
 
 //System update
 model SystemUpdate {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   device    Device   @relation(fields: [deviceID], references: [id])
-  deviceID  Int      @unique
+  deviceID  String   @unique
   content   Json     @default("{}")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model SystemUpdatePolicy {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   content   Json     @default("{}")
   device    Device[]
   createdAt DateTime @default(now())
@@ -101,7 +101,7 @@ model SystemUpdatePolicy {
 
 //Agent
 model Agent {
-  id         Int      @id @default(autoincrement())
+  id         String   @id @default(uuid())
   version    String
   lastSeen   DateTime
   os         System
@@ -136,41 +136,41 @@ enum DeviceType {
 }
 
 model Device {
-  id                   Int                @id @default(autoincrement())
+  id                   String              @id @default(uuid())
   name                 String
-  agent                Agent              @relation(fields: [agentId], references: [id])
-  agentId              Int                @unique
+  agent                Agent               @relation(fields: [agentId], references: [id])
+  agentId              String              @unique
   type                 String
   os                   System
   osFullName           String
   conection            Connection
   remoteCode           Json
   health               Json
-  software             Software?          @relation(fields: [softwareId], references: [id])
-  softwareId           Int?
+  software             Software?           @relation(fields: [softwareId], references: [id])
+  softwareId           String?
   internalIp           String
   publicIp             String
-  location             Location?          @relation(fields: [locationId], references: [id])
-  locationId           Int?
+  location             Location            @relation(fields: [locationId], references: [id])
+  locationId           String              @unique
   SystemUpdate         SystemUpdate?
-  systemUpdatePolicy   SystemUpdatePolicy @relation(fields: [systemUpdatePolicyId], references: [id])
-  systemUpdatePolicyId Int
-  createdAt            DateTime           @default(now())
-  updatedAt            DateTime           @updatedAt
+  systemUpdatePolicy   SystemUpdatePolicy? @relation(fields: [systemUpdatePolicyId], references: [id])
+  systemUpdatePolicyId String?
+  createdAt            DateTime            @default(now())
+  updatedAt            DateTime            @updatedAt
 }
 
 model Location {
-  id             Int           @id @default(autoincrement())
+  id             String       @id @default(uuid())
   name           String
   devices        Device[]
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime      @updatedAt
-  Organization   Organization? @relation(fields: [organizationId], references: [id])
-  organizationId Int?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  Organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String       @unique
 }
 
 model Organization {
-  id        Int        @id @default(autoincrement())
+  id        String     @id @default(uuid())
   name      String
   locations Location[]
   createdAt DateTime   @default(now())
@@ -179,7 +179,7 @@ model Organization {
 
 //Task
 model Task {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   name      String
   cron      String
   duration  Int // Duration (in seconds)
@@ -191,7 +191,7 @@ model Task {
 
 //Alert
 model Alert {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   name      String
   content   Json     @default("{}")
   createdAt DateTime @default(now())
@@ -200,7 +200,7 @@ model Alert {
 
 // Script
 model Script {
-  id              Int      @id @default(autoincrement())
+  id              String   @id @default(uuid())
   name            String
   filename        String
   description     String
@@ -226,7 +226,7 @@ enum ReportType {
 }
 
 model Report {
-  id         Int        @id @default(autoincrement())
+  id         String     @id @default(uuid())
   type       ReportType
   name       String
   content    String
@@ -243,7 +243,7 @@ enum LogType {
 }
 
 model Log {
-  id         Int      @id @default(autoincrement())
+  id         String   @id @default(uuid())
   type       LogType
   name       String
   content    String
@@ -254,7 +254,7 @@ model Log {
 
 // Settings
 model Settings {
-  id               Int      @id @default(autoincrement())
+  id               String   @id @default(uuid())
   announceSettings Json     @default("{\"SMTP\":0,\"WebHook\":0,\"SMS\":0}")
   aiSettings       Json     @default("{\"OpenAI\":0}")
   defaultTimeZone  String
