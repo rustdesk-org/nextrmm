@@ -86,13 +86,13 @@ model Software {
 //System update
 model SystemUpdate {
   id        String   @id @default(uuid())
-  device    Device   @relation(fields: [deviceID], references: [id])
-  deviceID  String   @unique
+  device    Device   @relation(fields: [deviceId], references: [id])
+  deviceId  String   @unique
   content   Json     @default("{}")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([deviceID])
+  @@index([deviceId])
 }
 
 model SystemUpdatePolicy {
