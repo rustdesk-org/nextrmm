@@ -192,28 +192,30 @@ model Organization {
 
 //Task
 model Task {
-  id        String   @id @default(uuid())
-  name      String
-  cron      String
-  duration  Int // Duration (in seconds)
-  content   Json     @default("{\"script\":0}")
-  result    Json     @default("{}")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         String   @id @default(uuid())
+  name       String
+  cron       String
+  duration   Int // Duration (in seconds)
+  content    Json     @default("{\"script\":0}")
+  result     Json     @default("{}")
+  isTemplate Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
-  @@index([name])
+  @@index([name, isTemplate])
   @@index([content(ops: JsonbPathOps)], type: Gin)
 }
 
 //Alert
 model Alert {
-  id        String   @id @default(uuid())
-  name      String
-  content   Json     @default("{}")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         String   @id @default(uuid())
+  name       String
+  content    Json     @default("{}")
+  isTemplate Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
-  @@index([name])
+  @@index([name, isTemplate])
 }
 
 // Script
