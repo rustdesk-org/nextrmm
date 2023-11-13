@@ -42,9 +42,7 @@ export function BodyLayout({ children }: { children: React.ReactNode }) {
           </nav>
         </Collapsible>
       </aside>
-      <main className="flex min-h-screen w-full flex-col overflow-y-auto ">
-        {children}
-      </main>
+      <main className="flex w-full flex-col overflow-y-auto ">{children}</main>
     </div>
   );
 }
