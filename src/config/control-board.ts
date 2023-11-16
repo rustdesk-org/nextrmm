@@ -4,7 +4,7 @@ export const controlboardConfig: ControlBoardConfig = {
   sidebarUpNav: [
     {
       title: "Dashboard",
-      href: "/",
+      href: "/dashboard",
       icon: "dashboard",
     },
     {
