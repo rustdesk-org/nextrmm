@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
+import { AsideHidden, AsideShow } from "~/components/aside";
 import { Icons } from "~/components/icons";
-import { AsideHiddenNav, AsideShowNav } from "~/components/nav";
 import { Button } from "~/components/ui/button";
 import { Collapsible, CollapsibleTrigger } from "~/components/ui/collapsible";
 
@@ -26,7 +26,7 @@ export function BodyLayout({ children }: { children: React.ReactNode }) {
               isSideNavOpen ? "w-[50px]" : "w-[200px]"
             }`}
           >
-            {isSideNavOpen ? <AsideHiddenNav /> : <AsideShowNav />}
+            {isSideNavOpen ? <AsideHidden /> : <AsideShow />}
             <div className="flex h-full flex-col-reverse">
               <CollapsibleTrigger asChild>
                 <Button variant="ghost" size="sm">
