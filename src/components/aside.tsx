@@ -20,7 +20,8 @@ import { LocaleSwitcher } from "./locale-switcher";
 export function AsideShow() {
   const upItems: SideNavItem[] = controlboardConfig.sidebarUpNav;
   const downItems: SideNavPopoverItem[] = controlboardConfig.sidebarDownNav;
-  const path = usePathname().replace(/^\/[a-z]{2}(\/|$)/, "/");
+  const parts = usePathname().split("/");
+  const path = `/${parts[2]}`;
   if (!upItems?.length || !downItems?.length) {
     return null;
   }
@@ -89,7 +90,8 @@ export function AsideShow() {
 export function AsideHidden() {
   const upItems: SideNavItem[] = controlboardConfig.sidebarUpNav;
   const downItems: SideNavPopoverItem[] = controlboardConfig.sidebarDownNav;
-  const path = usePathname().replace(/^\/[a-z]{2}(\/|$)/, "/");
+  const parts = usePathname().split("/");
+  const path = `/${parts[2]}`;
   if (!upItems?.length || !downItems?.length) {
     return null;
   }

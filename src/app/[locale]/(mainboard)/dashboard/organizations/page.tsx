@@ -1,9 +1,9 @@
 import { api } from "~/trpc/server";
 
-export default async function DashBoard() {
+export default async function Organizations() {
   return (
     <div>
-      <p>Hello</p>
+      <p>Organizations</p>
     </div>
   );
 }
