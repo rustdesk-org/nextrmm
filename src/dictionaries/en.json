@@ -41,6 +41,21 @@
       "wait": "Creating...",
       "successToast": "Organization created successfully",
       "errorToast": "Oops, Error creating organization"
+    },
+    "create-location": {
+      "title": "Create Location",
+      "organization-name": "Organization Name",
+      "organization-select": "Select organization...",
+      "organization-input-placeholder": "Search organization...",
+      "organization-empty-placeholder": "No organization found.",
+      "organization-fetch-loading": "Loading...",
+      "organization-fetch-error": "Oops, there are something wrong with server.",
+      "location-name": "Location Name",
+      "description": "Add a new location",
+      "create": "Create",
+      "wait": "Creating...",
+      "successToast": "Location created successfully",
+      "errorToast": "Oops, Error creating location"
     }
   }
 }
