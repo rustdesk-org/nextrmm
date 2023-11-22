@@ -27,7 +27,7 @@ export const locationRouter = createTRPCRouter({
       return ctx.db.location.create({
         data: {
           name: input.name,
-          Organization: {
+          organization: {
             connect: {
               id: input.organizationId,
             },
