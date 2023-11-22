@@ -31,5 +31,16 @@
   "sign-up-email-template": {
     "get-started": "¡Comienza!",
     "sign-up": "Regístrate en"
+  },
+  "dashboard": {
+    "create-organization": {
+      "title": "Create Organization",
+      "name": "Organization Name",
+      "description": "Add a new organization",
+      "create": "Create",
+      "wait": "Submitting...",
+      "successToast": "Organization created successfully",
+      "errorToast": "Oops, Error creating organization"
+    }
   }
 }

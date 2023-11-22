@@ -11,7 +11,7 @@ export default async function DashBoardLayout({
       <div>
         <DashboardMenu />
       </div>
-      <div className="h-[200px]">{children}</div>
+      {children}
     </div>
   );
 }

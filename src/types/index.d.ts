@@ -56,3 +56,13 @@ export type DashboardMenuItem = {
 export type DashboardMenuConfig = {
   dashboardMenu: DashboardMenuItem[];
 };
+
+export type DashboardOrganizationCreateDict = {
+  title: string;
+  name: string;
+  description: string;
+  create: string;
+  wait: string;
+  successToast: string;
+  errorToast: string;
+};
