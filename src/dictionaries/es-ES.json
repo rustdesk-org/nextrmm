@@ -37,6 +37,11 @@
       "Getting-started": "Getting Started",
       "Organizations": "Organizations"
     },
+    "community": {
+      "community": "Community",
+      "documentation": "Documentation",
+      "news": "News"
+    },
     "create-organization": {
       "title": "Create Organization",
       "name": "Organization Name",
