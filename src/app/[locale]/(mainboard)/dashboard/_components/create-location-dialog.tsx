@@ -29,10 +29,10 @@ import {
 import { useToast } from "~/components/ui/use-toast";
 import { cn } from "~/lib/utils";
 import { api } from "~/trpc/react";
-import { DashboardLocationCreateDict } from "~/types";
+import { I18nDict } from "~/types";
 
 interface Props {
-  dictionary: DashboardLocationCreateDict;
+  dictionary: I18nDict;
   id: string;
 }
 

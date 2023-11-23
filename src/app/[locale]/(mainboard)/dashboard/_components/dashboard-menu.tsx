@@ -5,10 +5,10 @@ import { usePathname } from "next/navigation";
 import { Separator } from "~/components/ui/separator";
 import { dashboardMenuConfig } from "~/config/dashboard-menu";
 import { cn } from "~/lib/utils";
-import { DashboardMenuConfig, DashboardMenuItem, i18nDict } from "~/types";
+import { DashboardMenuConfig, DashboardMenuItem, I18nDict } from "~/types";
 
 interface Props {
-  dict: i18nDict;
+  dict: I18nDict;
 }
 
 export function DashboardMenu({ dict }: Props) {

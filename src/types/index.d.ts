@@ -57,32 +57,6 @@ export type DashboardMenuConfig = {
   dashboardMenu: DashboardMenuItem[];
 };
 
-export type i18nDict = {
+export type I18nDict = {
   [key: string]: string;
-};
-
-export type DashboardOrganizationCreateDict = {
-  title: string;
-  name: string;
-  description: string;
-  create: string;
-  wait: string;
-  successToast: string;
-  errorToast: string;
-};
-
-export type DashboardLocationCreateDict = {
-  title: string;
-  "organization-name": string;
-  "organization-select": string;
-  "organization-input-placeholder": string;
-  "organization-empty-placeholder": string;
-  "organization-fetch-loading": string;
-  "organization-fetch-error": string;
-  "location-name": string;
-  description: string;
-  create: string;
-  wait: string;
-  successToast: string;
-  errorToast: string;
 };

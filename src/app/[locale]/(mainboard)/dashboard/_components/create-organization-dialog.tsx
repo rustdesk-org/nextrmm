@@ -15,10 +15,10 @@ import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { useToast } from "~/components/ui/use-toast";
 import { api } from "~/trpc/react";
-import { DashboardOrganizationCreateDict } from "~/types";
+import { I18nDict } from "~/types";
 
 interface Props {
-  dictionary: DashboardOrganizationCreateDict;
+  dictionary: I18nDict;
   id: string;
 }
 
