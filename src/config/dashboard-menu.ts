@@ -5,11 +5,11 @@ const dashboardMenuHref: string = "/dashboard";
 export const dashboardMenuConfig: DashboardMenuConfig = {
   dashboardMenu: [
     {
-      title: "Getting-started",
+      title: "getting-started",
       href: dashboardMenuHref,
     },
     {
-      title: "Organizations",
+      title: "organizations",
       href: dashboardMenuHref + "/organizations",
     },
   ],

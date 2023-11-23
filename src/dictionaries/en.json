@@ -34,8 +34,8 @@
   },
   "dashboard": {
     "menu": {
-      "Getting-started": "Getting Started",
-      "Organizations": "Organizations"
+      "getting-started": "Getting Started",
+      "organizations": "Organizations"
     },
     "community": {
       "community": "Community",
