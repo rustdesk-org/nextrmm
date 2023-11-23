@@ -33,6 +33,10 @@
     "sign-up": "Sign up to"
   },
   "dashboard": {
+    "menu": {
+      "Getting-started": "Getting Started",
+      "Organizations": "Organizations"
+    },
     "create-organization": {
       "title": "Create Organization",
       "name": "Organization Name",

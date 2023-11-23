@@ -5,9 +5,13 @@ import { usePathname } from "next/navigation";
 import { Separator } from "~/components/ui/separator";
 import { dashboardMenuConfig } from "~/config/dashboard-menu";
 import { cn } from "~/lib/utils";
-import { DashboardMenuConfig, DashboardMenuItem } from "~/types";
+import { DashboardMenuConfig, DashboardMenuItem, i18nDict } from "~/types";
 
-export function DashboardMenu() {
+interface Props {
+  dict: i18nDict;
+}
+
+export function DashboardMenu({ dict }: Props) {
   const Items: DashboardMenuItem[] = dashboardMenuConfig.dashboardMenu;
   const parts = usePathname().split("/");
   const path = `/${parts[2]}${parts[3] ? "/" + parts[3] : ""}`;
@@ -25,7 +29,7 @@ export function DashboardMenu() {
                   : "text-gray-600 hover:text-primary",
               )}
             >
-              <Link href={item.href}>{item.title}</Link>
+              <Link href={item.href}>{dict[item.title]}</Link>
             </li>
           );
         })}

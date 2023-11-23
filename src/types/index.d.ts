@@ -57,6 +57,10 @@ export type DashboardMenuConfig = {
   dashboardMenu: DashboardMenuItem[];
 };
 
+export type i18nDict = {
+  [key: string]: string;
+};
+
 export type DashboardOrganizationCreateDict = {
   title: string;
   name: string;
