@@ -1,4 +1,4 @@
-import { DashboardMenu } from "~/components/dashboard-menu";
+import { DashboardMenu } from "./_components/dashboard-menu";
 
 export default async function DashBoardLayout({
   children,
@@ -7,10 +7,8 @@ export default async function DashBoardLayout({
 }) {
   return (
     <div className="flex flex-col">
-      <p>DASHBOARD</p>
-      <div>
-        <DashboardMenu />
-      </div>
+      <p className="font-bold">Dashboard</p>
+      <DashboardMenu />
       {children}
     </div>
   );

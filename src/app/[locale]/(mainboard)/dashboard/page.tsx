@@ -14,18 +14,19 @@ export default async function DashBoard({ params: { locale } }: Props) {
 
   return (
     <div className="flex">
-      <div>
-        <div className="flex-col">
-          <p>Quick Link</p>
-          <CreateOrganizationDialog
-            dictionary={d.dashboard["create-organization"]}
-            id={session!.user.id}
-          />
-          <CreateLocationDialog
-            dictionary={d.dashboard["create-location"]}
-            id={session!.user.id}
-          />
-        </div>
+      <div className="w-1/3 flex-col">
+        <h2 className="my-4 text-xl font-bold">Quick Links</h2>
+        <CreateOrganizationDialog
+          dictionary={d.dashboard["create-organization"]}
+          id={session!.user.id}
+        />
+        <CreateLocationDialog
+          dictionary={d.dashboard["create-location"]}
+          id={session!.user.id}
+        />
+      </div>
+      <div className="w-2/3 flex-col px-2 lg:w-1/3">
+        <h2 className="my-4 text-xl font-bold">Documents</h2>
       </div>
     </div>
   );

@@ -138,10 +138,10 @@ export function CreateLocationDialog({ dictionary, id }: Props) {
   }
 
   return (
-    <div>
+    <div className="mb-4">
       <Dialog>
         <DialogTrigger asChild>
-          <span className="text-primary hover:cursor-pointer">
+          <span className="text-lg font-semibold text-primary hover:cursor-pointer">
             {dictionary.title}
           </span>
         </DialogTrigger>
@@ -174,7 +174,7 @@ export function CreateLocationDialog({ dictionary, id }: Props) {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-      <p>{dictionary.description}</p>
+      <p className="mb-2 text-sm">{dictionary.description}</p>
     </div>
   );
 }
