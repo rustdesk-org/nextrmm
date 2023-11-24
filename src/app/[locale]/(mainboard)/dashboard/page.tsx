@@ -5,6 +5,7 @@ import { getDictionary } from "~/lib/dictionary";
 import { getServerAuthSession } from "~/server/auth";
 import { CreateLocationDialog } from "./_components/create-location-dialog";
 import { CreateOrganizationDialog } from "./_components/create-organization-dialog";
+import { DocumentsStartupSection } from "./_components/documents-startup-section";
 
 type Props = {
   params: { locale: Locale };
@@ -16,7 +17,7 @@ export default async function DashBoard({ params: { locale } }: Props) {
 
   return (
     <div className="flex">
-      <div className="w-1/3 flex-col">
+      <div className="w-1/4 flex-col">
         <h2 className="my-4 text-xl font-bold">Quick Links</h2>
         <CreateOrganizationDialog
           dictionary={d.dashboard["create-organization"]}
@@ -27,7 +28,7 @@ export default async function DashBoard({ params: { locale } }: Props) {
           id={session!.user.id}
         />
       </div>
-      <div className="w-1/3 flex-col px-2 lg:w-2/3">
+      <div className="w-1/4 flex-col px-2 lg:w-3/4">
         <div>
           <h2 className="my-4 text-xl font-bold">Community</h2>
           <div className="grid w-2/3 grid-cols-3 gap-4">
@@ -66,9 +67,7 @@ export default async function DashBoard({ params: { locale } }: Props) {
             </Link>
           </div>
         </div>
-        <div>
-          <h2 className="my-4 text-xl font-bold">Documents</h2>
-        </div>
+        <DocumentsStartupSection />
       </div>
     </div>
   );
