@@ -14,7 +14,7 @@ export default async function DashBoardLayout({
   const d = await getDictionary(locale);
   return (
     <div className="flex flex-col">
-      <p className="font-bold">Dashboard</p>
+      <p className="font-bold">DASHBOARD</p>
       <DashboardMenu dict={d.dashboard["menu"]} />
       {children}
     </div>
