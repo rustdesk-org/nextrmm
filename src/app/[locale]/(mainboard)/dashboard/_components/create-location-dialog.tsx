@@ -141,7 +141,10 @@ export function CreateLocationDialog({ dictionary, id }: Props) {
     <div className="mb-4">
       <Dialog>
         <DialogTrigger asChild>
-          <span className="text-lg font-semibold text-primary hover:cursor-pointer">
+          <span
+            className="text-lg font-semibold text-primary hover:cursor-pointer"
+            onClick={() => organizations.refetch()}
+          >
             {dictionary.title}
           </span>
         </DialogTrigger>
