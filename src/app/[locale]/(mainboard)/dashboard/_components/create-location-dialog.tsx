@@ -38,6 +38,7 @@ interface Props {
 
 export function CreateLocationDialog({ dictionary, id }: Props) {
   const { toast } = useToast();
+  const [dialogOpen, setDialogOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [orgName, setOrgName] = useState("");
   const [orgId, setOrgId] = useState("");
@@ -52,6 +53,7 @@ export function CreateLocationDialog({ dictionary, id }: Props) {
       setOrgId("");
       setLocationName("");
       setOpen(false);
+      setDialogOpen(false);
       toast({
         description: dictionary.successToast,
       });
@@ -139,7 +141,7 @@ export function CreateLocationDialog({ dictionary, id }: Props) {
 
   return (
     <div className="mb-4">
-      <Dialog>
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogTrigger asChild>
           <span
             className="text-lg font-semibold text-primary hover:cursor-pointer"
