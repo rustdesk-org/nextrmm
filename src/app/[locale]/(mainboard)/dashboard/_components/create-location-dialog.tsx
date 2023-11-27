@@ -165,6 +165,7 @@ export function CreateLocationDialog({ dictionary, id }: Props) {
                 className="w-[300px]"
                 value={locationName}
                 onChange={(e) => setLocationName(e.target.value)}
+                autoComplete="off"
               />
             </div>
           </div>

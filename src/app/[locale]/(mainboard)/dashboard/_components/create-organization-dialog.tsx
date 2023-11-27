@@ -67,6 +67,7 @@ export function CreateOrganizationDialog({ dictionary, id }: Props) {
                 className="col-span-3"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                autoComplete="off"
               />
             </div>
           </div>
