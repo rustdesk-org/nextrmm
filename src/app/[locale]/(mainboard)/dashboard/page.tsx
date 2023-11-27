@@ -16,7 +16,7 @@ export default async function DashBoard({ params: { locale } }: Props) {
   const d = await getDictionary(locale);
 
   return (
-    <div className="flex">
+    <div className="ml-3 flex">
       <div className="w-1/4 flex-col">
         <h2 className="my-4 text-xl font-bold">Quick Links</h2>
         <CreateOrganizationDialog

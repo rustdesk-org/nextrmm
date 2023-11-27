@@ -18,7 +18,7 @@ export function BodyLayout({ user, children }: Props) {
 
   return (
     <div
-      className={`container grid flex-1 gap-3 ${
+      className={`container grid flex-1 ${
         isSideNavOpen ? "md:grid-cols-[50px_1fr]" : "md:grid-cols-[200px_1fr]"
       } max-w-none px-0 transition-[width]`}
     >
@@ -29,7 +29,7 @@ export function BodyLayout({ user, children }: Props) {
           className="fixed h-full "
         >
           <nav
-            className={`flex h-full flex-col items-start gap-0.5 bg-[#fefefe] transition-[width] duration-300 dark:bg-inherit ${
+            className={`border-inherit/50 flex h-full flex-col items-start gap-0.5 border-r transition-[width] duration-300 dark:bg-inherit ${
               isSideNavOpen ? "w-[50px]" : "w-[200px]"
             }`}
           >
