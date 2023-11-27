@@ -47,3 +47,16 @@ export type ControlBoardConfig = {
   sidebarUpNav: SideNavItem[];
   sidebarDownNav: SideNavPopoverItem[];
 };
+
+export type DashboardMenuItem = {
+  title: string;
+  href: string;
+};
+
+export type DashboardMenuConfig = {
+  dashboardMenu: DashboardMenuItem[];
+};
+
+export type I18nDict = {
+  [key: string]: string;
+};

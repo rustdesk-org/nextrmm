@@ -21,14 +21,17 @@ import {
   Monitor,
   Moon,
   MoreVertical,
+  Newspaper,
   Pizza,
   Plus,
+  Search,
   Settings,
   Star,
   SunMedium,
   Trash,
   Twitter,
   User,
+  Users,
   X,
 } from "lucide-react";
 
@@ -126,4 +129,7 @@ export const Icons: any = {
   favourite: Star,
   recent: BarChart4,
   asideSwitch: ChevronRight,
+  community: Users,
+  news: Newspaper,
+  search: Search,
 };

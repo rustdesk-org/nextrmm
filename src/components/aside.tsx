@@ -15,12 +15,12 @@ import { controlboardConfig } from "~/config/control-board";
 import { siteConfig } from "~/config/site";
 import { cn } from "~/lib/utils";
 import { SideNavItem, SideNavPopoverItem } from "~/types";
-import { LocaleSwitcher } from "./locale-switcher";
 
-export function AsideShowNav() {
+export function AsideShow() {
   const upItems: SideNavItem[] = controlboardConfig.sidebarUpNav;
   const downItems: SideNavPopoverItem[] = controlboardConfig.sidebarDownNav;
-  const path = usePathname();
+  const parts = usePathname().split("/");
+  const path = `/${parts[2]}`;
   if (!upItems?.length || !downItems?.length) {
     return null;
   }
@@ -28,7 +28,7 @@ export function AsideShowNav() {
     <div>
       <Link
         href="/"
-        className="mb-2 ml-8 mt-5 hidden items-center space-x-2 md:flex"
+        className="my-4 ml-8 hidden items-center space-x-2 md:flex"
       >
         <Icons.logo />
         <span className="hidden font-bold sm:inline-block">
@@ -56,7 +56,7 @@ export function AsideShowNav() {
           )
         );
       })}
-      <Separator className="my-2 !border-[#efefef] !bg-[#efefef]" />
+      <Separator className="my-2 opacity-50" />
       {downItems.map((item, index) => {
         const Icon = Icons[item.icon || "arrowRight"];
         const Content = PopOverContents[item.content];
@@ -78,25 +78,22 @@ export function AsideShowNav() {
           </Popover>
         );
       })}
-      <Separator className="my-2 !border-[#efefef] !bg-[#efefef]" />
-      <div className="px-4 py-2">
-        <LocaleSwitcher />
-      </div>
     </div>
   );
 }
 
-export function AsideHiddenNav() {
+export function AsideHidden() {
   const upItems: SideNavItem[] = controlboardConfig.sidebarUpNav;
   const downItems: SideNavPopoverItem[] = controlboardConfig.sidebarDownNav;
-  const path = usePathname();
+  const parts = usePathname().split("/");
+  const path = `/${parts[2]}`;
   if (!upItems?.length || !downItems?.length) {
     return null;
   }
   return (
     <CollapsibleContent>
       <div>
-        <Link href="/" className="mb-2 ml-4 mt-5 hidden items-center md:flex">
+        <Link href="/" className="my-4 ml-4 hidden items-center md:flex">
           <Icons.logo />
         </Link>
         {upItems.map((item, index) => {
@@ -119,7 +116,7 @@ export function AsideHiddenNav() {
             )
           );
         })}
-        <Separator className="my-2 !border-[#efefef] !bg-[#efefef]" />
+        <Separator className="my-2 opacity-50" />
         {downItems.map((item, index) => {
           const Icon = Icons[item.icon || "arrowRight"];
           const Content = PopOverContents[item.content];

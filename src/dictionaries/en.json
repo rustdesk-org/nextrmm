@@ -31,5 +31,40 @@
   "sign-up-email-template": {
     "get-started": "Get Started!",
     "sign-up": "Sign up to"
+  },
+  "dashboard": {
+    "menu": {
+      "getting-started": "Getting Started",
+      "organizations": "Organizations"
+    },
+    "community": {
+      "community": "Community",
+      "documentation": "Documentation",
+      "news": "News"
+    },
+    "create-organization": {
+      "title": "Create an Organization",
+      "name": "Organization Name",
+      "description": "Add a new organization",
+      "create": "Create",
+      "wait": "Creating...",
+      "successToast": "Organization created successfully",
+      "errorToast": "Oops, Error creating organization"
+    },
+    "create-location": {
+      "title": "Create Location",
+      "organization-name": "Organization Name",
+      "organization-select": "Select organization...",
+      "organization-input-placeholder": "Search organization...",
+      "organization-empty-placeholder": "No organization found.",
+      "organization-fetch-loading": "Loading...",
+      "organization-fetch-error": "Oops, there are something wrong with server.",
+      "location-name": "Location Name",
+      "description": "Add a new location",
+      "create": "Create",
+      "wait": "Creating...",
+      "successToast": "Location created successfully",
+      "errorToast": "Oops, Error creating location"
+    }
   }
 }

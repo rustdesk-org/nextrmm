@@ -67,7 +67,7 @@ model Software {
   type    String
   version String
   content Json     @default("{}") //{name：{maintainer:xxx,version:xxx,description:xxx}}
-  Device  Device[]
+  device  Device[]
 
   @@index([type])
 }
@@ -103,7 +103,7 @@ model Agent {
   autoUpdate Boolean  @default(false)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  Device     Device?
+  device     Device?
 
   @@index([os, autoUpdate])
 }
@@ -148,7 +148,7 @@ model Device {
   publicIp             String
   location             Location            @relation(fields: [locationId], references: [id])
   locationId           String              @unique
-  SystemUpdate         SystemUpdate?
+  systemUpdate         SystemUpdate?
   systemUpdatePolicy   SystemUpdatePolicy? @relation(fields: [systemUpdatePolicyId], references: [id])
   systemUpdatePolicyId String?
   createdAt            DateTime            @default(now())
@@ -163,7 +163,7 @@ model Location {
   devices        Device[]
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
-  Organization   Organization @relation(fields: [organizationId], references: [id])
+  organization   Organization @relation(fields: [organizationId], references: [id])
   organizationId String       @unique
 
   @@index([name])
