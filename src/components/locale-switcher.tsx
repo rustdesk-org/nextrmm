@@ -10,7 +10,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "~/components/ui/select";
+} from "~/components/ui/select-header-version";
 import { i18n } from "~/i18n-config";
 import { Icons } from "./icons";
 
@@ -40,10 +40,10 @@ export function LocaleSwitcher() {
 
   return (
     <Select onValueChange={onSelect}>
-      <SelectTrigger className="w-[160px] border-none hover:bg-accent focus:ring-0">
-        <div className="flex flex-row items-center gap-2">
-          <Icons.languages size={10} />
-          <SelectValue placeholder={currentLocale.toUpperCase()} />
+      <SelectTrigger>
+        <div className="inline-flex h-8 w-8 items-center justify-center rounded-md px-0 hover:bg-accent hover:text-accent-foreground">
+          <Icons.languages />
+          <span className="sr-only">i18n</span>
         </div>
       </SelectTrigger>
       <SelectContent>

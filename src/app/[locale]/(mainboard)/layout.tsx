@@ -15,7 +15,7 @@ export default async function Layout({
 
   return (
     <>
-      <BodyLayout>{children}</BodyLayout>
+      <BodyLayout user={session.user}>{children}</BodyLayout>
     </>
   );
 }

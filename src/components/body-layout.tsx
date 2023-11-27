@@ -1,12 +1,19 @@
 "use client";
 
 import * as React from "react";
+import { User } from "next-auth";
 import { AsideHidden, AsideShow } from "~/components/aside";
+import { Header } from "~/components/header";
 import { Icons } from "~/components/icons";
 import { Button } from "~/components/ui/button";
 import { Collapsible, CollapsibleTrigger } from "~/components/ui/collapsible";
 
-export function BodyLayout({ children }: { children: React.ReactNode }) {
+interface Props {
+  user: User;
+  children: React.ReactNode;
+}
+
+export function BodyLayout({ user, children }: Props) {
   const [isSideNavOpen, setisSideNavOpen] = React.useState(false);
 
   return (
@@ -42,7 +49,12 @@ export function BodyLayout({ children }: { children: React.ReactNode }) {
           </nav>
         </Collapsible>
       </aside>
-      <main className="flex w-full flex-col overflow-y-auto ">{children}</main>
+      <div className="relative">
+        <Header user={user} />
+        <main className="flex w-full flex-col overflow-y-auto ">
+          {children}
+        </main>
+      </div>
     </div>
   );
 }

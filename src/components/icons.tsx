@@ -24,6 +24,7 @@ import {
   Newspaper,
   Pizza,
   Plus,
+  Search,
   Settings,
   Star,
   SunMedium,
@@ -130,4 +131,5 @@ export const Icons: any = {
   asideSwitch: ChevronRight,
   community: Users,
   news: Newspaper,
+  search: Search,
 };

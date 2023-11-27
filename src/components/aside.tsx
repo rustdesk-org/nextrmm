@@ -15,7 +15,6 @@ import { controlboardConfig } from "~/config/control-board";
 import { siteConfig } from "~/config/site";
 import { cn } from "~/lib/utils";
 import { SideNavItem, SideNavPopoverItem } from "~/types";
-import { LocaleSwitcher } from "./locale-switcher";
 
 export function AsideShow() {
   const upItems: SideNavItem[] = controlboardConfig.sidebarUpNav;
@@ -57,7 +56,7 @@ export function AsideShow() {
           )
         );
       })}
-      <Separator className="my-2 !border-[#efefef] !bg-[#efefef]" />
+      <Separator className="my-2" />
       {downItems.map((item, index) => {
         const Icon = Icons[item.icon || "arrowRight"];
         const Content = PopOverContents[item.content];
@@ -79,10 +78,6 @@ export function AsideShow() {
           </Popover>
         );
       })}
-      <Separator className="my-2 !border-[#efefef] !bg-[#efefef]" />
-      <div className="px-4 py-2">
-        <LocaleSwitcher />
-      </div>
     </div>
   );
 }
@@ -121,7 +116,7 @@ export function AsideHidden() {
             )
           );
         })}
-        <Separator className="my-2 !border-[#efefef] !bg-[#efefef]" />
+        <Separator className="my-2" />
         {downItems.map((item, index) => {
           const Icon = Icons[item.icon || "arrowRight"];
           const Content = PopOverContents[item.content];

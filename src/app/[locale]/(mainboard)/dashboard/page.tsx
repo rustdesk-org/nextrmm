@@ -34,7 +34,7 @@ export default async function DashBoard({ params: { locale } }: Props) {
           <div className="grid w-2/3 grid-cols-3 gap-4">
             <Link
               href="/dashboard"
-              className="flex flex-col items-center rounded-lg bg-white p-4 shadow"
+              className="flex flex-col items-center rounded-lg border p-4 shadow"
             >
               <div className="p-2">
                 <Icons.community className="text-primary" />
@@ -45,7 +45,7 @@ export default async function DashBoard({ params: { locale } }: Props) {
             </Link>
             <Link
               href="/dashboard"
-              className="flex flex-col items-center rounded-lg bg-white p-4 shadow"
+              className="flex flex-col items-center rounded-lg border p-4 shadow"
             >
               <div className="p-2">
                 <Icons.document className="text-primary" />
@@ -56,7 +56,7 @@ export default async function DashBoard({ params: { locale } }: Props) {
             </Link>
             <Link
               href="/dashboard"
-              className="flex flex-col items-center rounded-lg bg-white p-4 shadow"
+              className="flex flex-col items-center rounded-lg border p-4 shadow"
             >
               <div className="p-2">
                 <Icons.news className="text-primary" />

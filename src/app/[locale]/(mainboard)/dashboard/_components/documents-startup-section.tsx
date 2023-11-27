@@ -9,11 +9,9 @@ export function DocumentsStartupSection() {
     <div>
       <h2 className="my-4 text-xl font-bold">Documents</h2>
       <div className="grid grid-cols-2 gap-4">
-        <div className="mb-4 rounded-lg shadow">
+        <div className="mb-4 rounded-lg border p-4 shadow ">
           <div className="flex items-center justify-between">
-            <h3 className="ml-2 text-lg font-medium leading-6">
-              New to NextRMM
-            </h3>
+            <h3 className="text-lg font-medium leading-6">New to NextRMM</h3>
             <Button className="mr-2">See All</Button>
           </div>
           <div className="mt-2">
@@ -41,9 +39,9 @@ export function DocumentsStartupSection() {
           </div>
         </div>
 
-        <div className="mb-4 rounded-lg shadow">
+        <div className="mb-4 rounded-lg border p-4 shadow">
           <div className="flex items-center justify-between">
-            <h3 className="ml-2 text-lg font-medium leading-6">
+            <h3 className="text-lg font-medium leading-6">
               Core NextRMM Features
             </h3>
             <Button className="mr-2">See All</Button>
