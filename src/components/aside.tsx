@@ -28,7 +28,7 @@ export function AsideShow() {
     <div>
       <Link
         href="/"
-        className="mb-2 ml-8 mt-5 hidden items-center space-x-2 md:flex"
+        className="my-4 ml-8 hidden items-center space-x-2 md:flex"
       >
         <Icons.logo />
         <span className="hidden font-bold sm:inline-block">
@@ -56,7 +56,7 @@ export function AsideShow() {
           )
         );
       })}
-      <Separator className="my-2" />
+      <Separator className="my-2 opacity-50" />
       {downItems.map((item, index) => {
         const Icon = Icons[item.icon || "arrowRight"];
         const Content = PopOverContents[item.content];
@@ -93,7 +93,7 @@ export function AsideHidden() {
   return (
     <CollapsibleContent>
       <div>
-        <Link href="/" className="mb-2 ml-4 mt-5 hidden items-center md:flex">
+        <Link href="/" className="my-4 ml-4 hidden items-center md:flex">
           <Icons.logo />
         </Link>
         {upItems.map((item, index) => {
@@ -116,7 +116,7 @@ export function AsideHidden() {
             )
           );
         })}
-        <Separator className="my-2" />
+        <Separator className="my-2 opacity-50" />
         {downItems.map((item, index) => {
           const Icon = Icons[item.icon || "arrowRight"];
           const Content = PopOverContents[item.content];
