@@ -43,7 +43,7 @@
       "news": "News"
     },
     "create-organization": {
-      "title": "Create Organization",
+      "title": "Create an Organization",
       "name": "Organization Name",
       "description": "Add a new organization",
       "create": "Create",
