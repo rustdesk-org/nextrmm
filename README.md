@@ -32,8 +32,6 @@ An open-source remote desktop, and alternative to TeamViewer.
 
 To participate, you must be:
 
-* A [verified student](https://education.github.com/discount_requests/pack_application) on Global Campus
-
 * 18 years or older
 
 * Active contributor on GitHub (monthly)
